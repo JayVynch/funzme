@@ -11,7 +11,9 @@
                             <!-- Logo -->
                             <div class="flex-shrink-0 flex items-center">
                                 <inertia-link :href="route('dashboard')">
-                                    <jet-application-mark class="block h-9 w-auto" />
+                                    <div class="font-bold text-3xl text-blue-800 uppercase">
+                                        Funzme
+                                    </div>
                                 </inertia-link>
                             </div>
 
@@ -215,11 +217,11 @@
             </nav>
 
             <!-- Page Heading -->
-            <header class="bg-white shadow" v-if="$slots.header">
+            <!-- <header class="bg-white shadow" v-if="$slots.header">
                 <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                     <slot name="header"></slot>
                 </div>
-            </header>
+            </header> -->
 
             <!-- Page Content -->
             <main>
