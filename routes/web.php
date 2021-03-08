@@ -32,3 +32,5 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::post('/posts/store', [PostController::class, 'store'])->name('tweet');
 
 Route::get('/posts' , [PostController::class, 'index'])->name('post.index');
+
+Route::post('/posts/{id}/like' , [PostController::class, 'addLike'])->name('post.addlike');

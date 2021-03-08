@@ -16,18 +16,18 @@ class LikeAPost
         $post = Posts::whereId($postId)->first();
 
         if(!$post){
-            return redirect()->route('home');
+            return redirect()->back();
         } 
 
         $like = $post->like();
 
-        broadcast( new LikeAPost ($post));
+        // broadcast( new LikeAPost ($post));
 
-        if(Auth::user()->lawyer->id != $post->owner->id){
-            $post->owner->user->notify( new LikesNotification($post));
-        }
+        // if(Auth::user()->lawyer->id != $post->owner->id){
+        //     $post->owner->user->notify( new LikesNotification($post));
+        // }
 
-        broadcast( new NotificationsEvent(auth()->user()->unreadNotifications()->count()));
+        // broadcast( new NotificationsEvent(auth()->user()->unreadNotifications()->count()));
 
         return response()->json(['liked' => $post->isLiked]);
     }

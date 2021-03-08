@@ -6,6 +6,7 @@ use App\Models\Posts;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Http\File;
+use App\Actions\Like\LikeAPost;
 use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
@@ -56,5 +57,12 @@ class PostController extends Controller
         ]);
 
         return redirect()->back();
+    }
+
+    public function addLike(Request $request){
+
+       $like = (new LikeAPost)->postLike($request->postId);
+
+       return response()->json(['data' => $like]);
     }
 }

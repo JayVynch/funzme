@@ -16,7 +16,7 @@ class Posts extends Model
 
     protected $fillable = ['tweets','post_photos'];
 
-    protected $appends = ['postUrl'];
+    protected $appends = ['isLiked','postUrl'];
 
     public function user(){
     	return $this->belongsTo(User::class);
@@ -26,12 +26,8 @@ class Posts extends Model
         return $this->post_photos ? asset("storage/images/posts/".$this->post_photos) : "";
     }
 
-    // public function getPostUrlAttribute(){
-    //     return $this->postImage();
-    // }
-
     public function likes(){
-        return $this->morphMany('App\Models\Likes','likeables');
+        return $this->morphMany('App\Models\Likes','likeable');
     }
 
     public function comments(){
@@ -47,18 +43,18 @@ class Posts extends Model
         }
     }
 
-    // public function unLike(){
+    public function unLike(){
        
-    //     return $this->likes()->where('user_id',Auth::user()->lawyer->id)->delete();    
+        return $this->likes()->where('user_id',Auth::id())->delete();    
         
-    // }
+    }
 
-    // public function isLiked(){
-    //     return $this->likes()->where('user_id',Auth::user()->lawyer->id)->count();
-    // }
+    public function isLiked(){
+        return $this->likes()->where('user_id',Auth::id())->count();
+    }
 
-    // public function getIsLikedAttribute(){
-    //     return $this->likes()->where('user_id',Auth::user()->lawyer->id)->exists();    
-    // }
+    public function getIsLikedAttribute(){
+        return $this->likes()->where('user_id',Auth::id())->exists();    
+    }
 
 }
