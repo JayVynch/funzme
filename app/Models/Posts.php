@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Auth;
 use App\Models\User;
 use App\Models\Likes;
 use App\Models\Comment;
@@ -13,18 +14,24 @@ class Posts extends Model
 {
     protected $table = 'posts';
 
-    protected $guarded = [];
+    protected $fillable = ['tweets','post_photos'];
+
+    protected $appends = ['postUrl'];
 
     public function user(){
     	return $this->belongsTo(User::class);
     }
 
-    public function PostImages(){
-        return $this->images ? asset("images/posts/".$this->images) : "";
+    public function getPostUrlAttribute(){
+        return $this->post_photos ? asset("storage/images/posts/".$this->post_photos) : "";
     }
 
+    // public function getPostUrlAttribute(){
+    //     return $this->postImage();
+    // }
+
     public function likes(){
-        return $this->morphMany('App\Models\Like','likeables');
+        return $this->morphMany('App\Models\Likes','likeables');
     }
 
     public function comments(){
@@ -36,22 +43,22 @@ class Posts extends Model
             'user_id' => Auth::id(),
         ];
         if( !$this->likes()->where($attributes)->exists()){
-           $this->likes()->create($attributes);    
+           return $this->likes()->create($attributes);    
         }
     }
 
-    public function unLike(){
+    // public function unLike(){
        
-        $this->likes()->where('user_id',Auth::user()->lawyer->id)->delete();    
+    //     return $this->likes()->where('user_id',Auth::user()->lawyer->id)->delete();    
         
-    }
+    // }
 
-    public function isLiked(){
-        return $this->likes()->where('user_id',Auth::user()->lawyer->id)->count();
-    }
+    // public function isLiked(){
+    //     return $this->likes()->where('user_id',Auth::user()->lawyer->id)->count();
+    // }
 
-    public function getIsLikedAttribute(){
-        return $this->likes()->where('user_id',Auth::user()->lawyer->id)->exists();    
-    }
+    // public function getIsLikedAttribute(){
+    //     return $this->likes()->where('user_id',Auth::user()->lawyer->id)->exists();    
+    // }
 
 }

@@ -6,7 +6,7 @@ use App\Models\User;
 use App\Models\Posts;
 
 /**
-* 
+* 	create a like from a post which the user liked
 */
 class LikeAPost 
 {
