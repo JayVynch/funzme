@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Http\File;
 use App\Actions\Like\LikeAPost;
+use App\Actions\Like\DeleteLike;
 use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
@@ -64,5 +65,12 @@ class PostController extends Controller
        $like = (new LikeAPost)->postLike($request->postId);
 
        return response()->json(['data' => $like]);
+    }
+
+    public function unLike($postId){
+
+        $like = (new DeleteLike)->destroyLike($postId);
+
+        return response()->json(['data' => $like]);
     }
 }

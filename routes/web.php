@@ -34,3 +34,5 @@ Route::post('/posts/store', [PostController::class, 'store'])->name('tweet');
 Route::get('/posts' , [PostController::class, 'index'])->name('post.index');
 
 Route::post('/posts/{id}/like' , [PostController::class, 'addLike'])->name('post.addlike');
+
+Route::delete('/posts/{id}/like', [PostController::class, 'unLike']);

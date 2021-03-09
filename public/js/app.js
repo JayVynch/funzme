@@ -18650,19 +18650,24 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     makeLike: function makeLike() {
-      if (!this.likeable) {
-        // axios.post(`/posts/${this.postId}/like`,{
-        // 	postId : this.postId
-        // });
-        this.likeable = true;
-      } else {
+      if (this.likeable) {
+        axios["delete"]("/posts/".concat(this.postId, "/like"), {
+          postId: this.postId
+        });
         this.likeable = false;
+        this.likes_count--;
+      } else {
+        axios.post("/posts/".concat(this.postId, "/like"), {
+          postId: this.postId
+        });
+        this.likeable = true;
+        this.likes_count++;
       }
     }
   },
   computed: {
     classes: function classes() {
-      return [this.likings ? "text-blue-800" : "text-gray-800"];
+      return [this.likeable ? "text-blue-800" : "text-gray-800"];
     }
   }
 });

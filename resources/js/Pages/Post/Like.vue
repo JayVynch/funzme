@@ -24,23 +24,28 @@
 
 			makeLike(){
 
-				if (!this.likeable) {
+				if (this.likeable) {
 
-					// axios.post(`/posts/${this.postId}/like`,{
-					// 	postId : this.postId
-					// });
-
-					this.likeable = true;
-				}else{
+					axios.delete(`/posts/${this.postId}/like`,{
+						postId : this.postId
+					});
 
 					this.likeable = false;
+					this.likes_count --;
+				}else{
+					axios.post(`/posts/${this.postId}/like`,{
+						postId : this.postId
+					});
+
+					this.likeable = true;
+					this.likes_count ++;
 				}
 			},
 		},
 
 		computed: {
 			classes (){
-				return  [this.likings ? "text-blue-800" : "text-gray-800"];
+				return  [this.likeable ? "text-blue-800" : "text-gray-800"];
 			},
 		}
 
