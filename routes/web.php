@@ -4,6 +4,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,3 +37,7 @@ Route::get('/posts' , [PostController::class, 'index'])->name('post.index');
 Route::post('/posts/{id}/like' , [PostController::class, 'addLike'])->name('post.addlike');
 
 Route::delete('/posts/{id}/like', [PostController::class, 'unLike']);
+
+Route::post('/posts/{id}/comment',[CommentController::class, 'store' ])->name('post.comment');
+
+Route::get('/posts/{id}/comments',[CommentController::class, 'index' ])->name('post.comments');

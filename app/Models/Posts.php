@@ -18,7 +18,9 @@ class Posts extends Model
 
     protected $appends = ['isLiked','postUrl'];
 
-    protected $withCount = ['likes'];
+    protected $with = ['comments'];
+    
+    protected $withCount = ['likes','comments'];
 
     public function user(){
     	return $this->belongsTo(User::class);

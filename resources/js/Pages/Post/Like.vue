@@ -1,9 +1,14 @@
 <template>
 	<div class="flex">
-		<button class="inline-flex items-center px-4 py-2 bg-transparent border border-transparent rounded-md font-semibold text-xs uppercase tracking-widest focus:outline-none transition ease-in-out duration-150" :class="classes" @click="makeLike">
-            <svg xmlns="http://www.w3.org/2000/svg" class="fill-current w-4 h-4" viewBox="0 0 24 24"><path d="M21.216 8h-2.216v-1.75l1-3.095v-3.155h-5.246c-2.158 6.369-4.252 9.992-6.754 10v-1h-8v13h8v-1h2l2.507 2h8.461l3.032-2.926v-10.261l-2.784-1.813zm.784 11.225l-1.839 1.775h-6.954l-2.507-2h-2.7v-7c3.781 0 6.727-5.674 8.189-10h1.811v.791l-1 3.095v4.114h3.623l1.377.897v8.328z"/></svg>
+		<button class="inline-flex items-center px-2 py-2 bg-transparent border border-transparent rounded-md font-semibold text-xs uppercase tracking-widest focus:outline-none transition ease-in-out duration-150" :class="classes" @click="makeLike">
+            <svg viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+	            <g><path
+	                    d="M12 21.638h-.014C9.403 21.59 1.95 14.856 1.95 8.478c0-3.064 2.525-5.754 5.403-5.754 2.29 0 3.83 1.58 4.646 2.73.814-1.148 2.354-2.73 4.645-2.73 2.88 0 5.404 2.69 5.404 5.755 0 6.376-7.454 13.11-10.037 13.157H12zM7.354 4.225c-2.08 0-3.903 1.988-3.903 4.255 0 5.74 7.034 11.596 8.55 11.658 1.518-.062 8.55-5.917 8.55-11.658 0-2.267-1.823-4.255-3.903-4.255-2.528 0-3.94 2.936-3.952 2.965-.23.562-1.156.562-1.387 0-.014-.03-1.425-2.965-3.954-2.965z">
+	                </path>
+	            </g>
+	        </svg>
         </button> 
-        <span class="px-4 text-xs text-blue-800 flex items-center justify-center">{{ likes_count }}</span>
+        <span class="px-1 text-xs text-blue-800 flex items-center justify-center">{{ likes_count }}</span>
 	</div>
 </template>
 
@@ -45,7 +50,7 @@
 
 		computed: {
 			classes (){
-				return  [this.likeable ? "text-blue-800" : "text-gray-800"];
+				return  [this.likeable ? "text-red-800" : "text-gray-800"];
 			},
 		}
 
