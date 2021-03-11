@@ -16,7 +16,12 @@
 	export default {
 		name : 'Likes',
 
-		props : ['likings','postId', 'countedLikes'],
+		props : [
+			'likings',
+			'postId',
+			'countedLikes',
+			'detect',
+		],
 
 		data(){
 			return {
@@ -30,17 +35,34 @@
 			makeLike(){
 
 				if (this.likeable) {
+					if (this.detect == 'post') {
 
-					axios.delete(`/posts/${this.postId}/like`,{
-						postId : this.postId
-					});
+						axios.delete(`/posts/${this.postId}/like`,{
+							postId : this.postId
+						});
+					}
+
+					if (this.detect == 'comment') {
+						axios.delete(`/comments/${this.postId}/like`,{
+							postId : this.postId
+						});
+					}
 
 					this.likeable = false;
 					this.likes_count --;
 				}else{
-					axios.post(`/posts/${this.postId}/like`,{
-						postId : this.postId
-					});
+
+					if (this.detect == 'post') {
+						axios.post(`/posts/${this.postId}/like`,{
+							postId : this.postId
+						});
+					}
+
+					if (this.detect == 'comment') {
+						axios.post(`/comments/${this.postId}/like`,{
+							postId : this.postId
+						});
+					}
 
 					this.likeable = true;
 					this.likes_count ++;

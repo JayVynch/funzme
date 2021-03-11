@@ -28,7 +28,7 @@
 
                 <div class="flex space-x-5 pt-3 text-gray-500 border-t border-gray-300">
             
-                    <likes :likings="post.isLiked" :postId="post.id" :countedLikes="post.likes_count"></likes>
+                    <likes :likings="post.isLiked" :postId="post.id" :countedLikes="post.likes_count" :detect="'post'"></likes>
         
                     <inertia-link class="flex space-x-2 inline-flex items-center" :href="route('post.comments',post.id)">
                         <svg viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">

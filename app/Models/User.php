@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Posts;
+use app\Models\Comment;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -61,6 +62,10 @@ class User extends Authenticatable
     ];
 
     public function posts(){
-        return $this->hasMany(Posts::class);
+        return $this->hasMany(Posts::class,'user_id');
+    }
+
+    public function comments(){
+      return $this->hasMany(Comment::class,'user_id');
     }
 }

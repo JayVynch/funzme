@@ -38,6 +38,10 @@ Route::post('/posts/{id}/like' , [PostController::class, 'addLike'])->name('post
 
 Route::delete('/posts/{id}/like', [PostController::class, 'unLike']);
 
+Route::post('/comments/{id}/like' , [CommentController::class, 'addLike'])->name('post.addlike');
+
+Route::delete('/comments/{id}/like', [CommentController::class, 'unLike']);
+
 Route::post('/posts/{id}/comment',[CommentController::class, 'store' ])->name('post.comment');
 
 Route::get('/posts/{id}/comments',[CommentController::class, 'index' ])->name('post.comments');
