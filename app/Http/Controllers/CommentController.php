@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\Storage;
 
 class CommentController extends Controller
 {
+    public function __construct(){
+        $this->middleware(['auth:sanctum']);
+    }
 
     public function index($id){
         return Inertia::render('Post/Comment',[

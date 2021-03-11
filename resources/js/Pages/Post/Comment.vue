@@ -6,6 +6,10 @@
 				    <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
 
 				    	<div class="text-2xl flex flex-col w-full justify-center items-center">
+				    		<inertia-link :href="route('dashboard')" class="flex w-full">
+				    			<svg xmlns="http://www.w3.org/2000/svg" class="fill-current w-8 h-8 text-blue-800" viewBox="0 0 24 24"><path d="M0 12l9-8v6h15v4h-15v6z"/></svg>
+				    			<span class="uppercase pl-3 text-blue-800 font-bold">Post</span>
+				    		</inertia-link>
 							<section class="py-6 w-2/3">
 
 						        <div  class="min-h-screen bg-white py-6 flex flex-col">
