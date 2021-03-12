@@ -69,7 +69,7 @@ class Follow extends Model
      * @param Model $recipient
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeBetweenLawyers($query, $sender, $recipient)
+    public function scopeBetweenUsers($query, $sender, $recipient)
     {
         $query->where(function ($queryIn) use ($sender, $recipient){
             $queryIn->where(function ($q) use ($sender, $recipient) {

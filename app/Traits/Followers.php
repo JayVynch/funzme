@@ -14,7 +14,7 @@ trait Followers {
      * @return Follow\Models\
     */
     
-    public function befriend(Lawyer $recipient)
+    public function befriend(User $recipient)
     {
         if (!$this->canBefriend($recipient)) {
             return false;
@@ -29,11 +29,11 @@ trait Followers {
     }
     
     /**
-     * @param Lawyer $recipient
+     * @param User $recipient
      *
      * @return bool
      */
-    public function unfriend(Lawyer $recipient)
+    public function unfriend(User $recipient)
     {
         $deleted = $this->findFriendship($recipient)->delete();
         // Event::fire('friendships.cancelled', [$this, $recipient]);
@@ -41,41 +41,41 @@ trait Followers {
     }
     
     /**
-     * @param Lawyer $recipient
+     * @param User $recipient
      *
      * @return bool
      */
-    public function hasFollowRequestPending(Lawyer $recipient)
+    public function hasFollowRequestPending(User $recipient)
     {
         return $this->findFriendship($recipient)->whereSenderId($recipient)->whereStatus(FollowStatus::PENDING)->exists();
     }
     
     /**
-     * @param Lawyer $recipient
+     * @param User $recipient
      *
      * @return bool
      */
-    public function hasSentFriendRequestTo(Lawyer $recipient)
+    public function hasSentFriendRequestTo(User $recipient)
     {
         return Follow::whereReceiverId($recipient)->whereSenderId($this)->whereStatus(FollowStatus::PENDING)->exists();
     }
    
     /**
-     * @param Lawyer $recipient
+     * @param User $recipient
      *
      * @return bool
      */
-    public function isFriendWith(Lawyer $recipient)
+    public function isFriendWith(User $recipient)
     {
         return $this->findFriendship($recipient)->where('status', FollowStatus::ACCEPTED)->exists();
     }
    
     /**
-     * @param Lawyer $recipient
+     * @param User $recipient
      *
      * @return bool|int
      */
-    public function acceptFollowRequest(Lawyer $recipient)
+    public function acceptFollowRequest(User $recipient)
     {
         $updated = $this->findFriendship($recipient)->whereReceiverId($this->id)->update([
             'status' => FollowStatus::ACCEPTED,
@@ -86,11 +86,11 @@ trait Followers {
     }
    
     /**
-     * @param Lawyer $recipient
+     * @param User $recipient
      *
      * @return bool|int
      */
-    public function denyFriendRequest(Lawyer $recipient)
+    public function denyFriendRequest(User $recipient)
     {
         $updated = $this->findFriendship($recipient)->whereReceiverId($this)->update([
             'status' => FollowStatus::DENIED,
@@ -101,11 +101,11 @@ trait Followers {
     }
     
     /**
-     * @param Lawyer $recipient
+     * @param User $recipient
      *
-     * @return \Hootlex\Friendships\Lawyers\Friendship
+     * @return \Hootlex\Friendships\Users\Friendship
      */
-    public function blockFriend(Lawyer $recipient)
+    public function blockFriend(User $recipient)
     {
         // if there is a friendship between the two users and the sender is not blocked
         // by the recipient user then delete the friendship
@@ -122,11 +122,11 @@ trait Followers {
     }
    
     /**
-     * @param Lawyer $recipient
+     * @param User $recipient
      *
      * @return mixed
      */
-    public function unblockFriend(Lawyer $recipient)
+    public function unblockFriend(User $recipient)
     {
         $deleted = $this->findFriendship($recipient)->whereSender($this)->delete();
         // Event::fire('friendships.unblocked', [$this, $recipient]);
@@ -134,11 +134,11 @@ trait Followers {
         return $deleted;
     }
     /**
-     * @param Lawyer $recipient
+     * @param User $recipient
      *
-     * @return \Hootlex\Friendships\Lawyers\Friendship
+     * @return \Hootlex\Friendships\Users\Friendship
      */
-    public function getFriendship(Lawyer $recipient)
+    public function getFriendship(User $recipient)
     {
         return $this->findFriendship($recipient)->first();
     }
@@ -195,21 +195,21 @@ trait Followers {
     }
    
     /**
-     * @param Lawyer $recipient
+     * @param User $recipient
      *
      * @return bool
      */
-    public function hasBlocked(Lawyer $recipient)
+    public function hasBlocked(User $recipient)
     {
         return $this->follows()->whereReceiverId($recipient)->whereStatus(FollowStatus::BLOCKED)->exists();
     }
    
     /**
-     * @param Lawyer $recipient
+     * @param User $recipient
      *
      * @return bool
      */
-    public function isBlockedBy(Lawyer $recipient)
+    public function isBlockedBy(User $recipient)
     {
         return $recipient->hasBlocked($this);
     }
@@ -224,8 +224,8 @@ trait Followers {
     }
     
     /**
-     * This method will not return Friendship Lawyers
-     * It will return the 'friends' Lawyers. ex: LexLinkz\User
+     * This method will not return Friendship Users
+     * It will return the 'friends' Users. ex: LexLinkz\User
      *
      * @param int $perPage Number
      * @param string $groupSlug
@@ -238,8 +238,8 @@ trait Followers {
     }
     
     /**
-     * This method will not return Friendship Lawyers
-     * It will return the 'friends' Lawyers. ex: LexLinkz\User
+     * This method will not return Friendship Users
+     * It will return the 'friends' Users. ex: LexLinkz\User
      *
      * @param int $perPage Number
      *
@@ -260,8 +260,8 @@ trait Followers {
         return $this->getMutualFriendsQueryBuilder($other)->count();
     }
     /**
-     * This method will not return Friendship Lawyers
-     * It will return the 'friends' Lawyers. ex: LexLinkz\User
+     * This method will not return Friendship Users
+     * It will return the 'friends' Users. ex: LexLinkz\User
      *
      * @param int $perPage Number
      *
@@ -284,7 +284,7 @@ trait Followers {
         return $friendsCount;
     }
     /**
-     * @param Lawyer $recipient
+     * @param User $recipient
      *
      * @return bool
      */
@@ -307,53 +307,53 @@ trait Followers {
     }
 
     /**
-    * Get links from lawyers from the same law school
+    * Get links from Users from the same law school
     * @param int $perPage
     * @return \Illuminate\Database\Eloquent\Collection
     */
 
     public function lawSchoolMates($perPage){
 
-        $query = Lawyer::where('nls', auth()->user()->Lawyer->nls)->pluck('id')->all();
+        $query = User::where('nls', auth()->user()->User->nls)->pluck('id')->all();
 
         return $this->getOrPaginate($query,$perPage);
 
     }
 
     /**
-    * Get links from lawyers from the Branch
+    * Get links from Users from the Branch
     * @param int $perPage
     * @return \Illuminate\Database\Eloquent\Collection
     */
 
     public function lawBranchMates($perPage){
 
-        $query = Lawyer::where('branch', auth()->user()->Lawyer->branch)->pluck('id')->all();
+        $query = User::where('branch', auth()->user()->User->branch)->pluck('id')->all();
 
         return $this->getOrPaginate($query,$perPage);
     }
 
     /**
-    * Get links from lawyers from the same location
+    * Get links from Users from the same location
     * @param int $perPage
     * @return \Illuminate\Database\Eloquent\Collection
     */
 
     public function lawLocationMates($perPage){
 
-        $query = Lawyer::where('location', auth()->user()->Lawyer->location)->pluck('id')->all();
+        $query = User::where('location', auth()->user()->User->location)->pluck('id')->all();
 
         return $this->getOrPaginate($query,$perPage);
     }
   
     /**
-     * @param Lawyer $recipient
+     * @param User $recipient
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
     private function findFriendship($recipient)
     {
-        return Follow::betweenLawyers($this, $recipient);
+        return Follow::betweenUsers($this, $recipient);
     }
     
     /**
@@ -379,7 +379,7 @@ trait Followers {
     }
     
     /**
-     * Get the query builder of the 'friend' Lawyer
+     * Get the query builder of the 'friend' User
      *	
      * @param string $groupSlug
      *
@@ -394,7 +394,7 @@ trait Followers {
     }
     
     /**
-     * Get the query builder of the 'follow' Lawyer
+     * Get the query builder of the 'follow' User
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
@@ -418,7 +418,7 @@ trait Followers {
     }
 
     /**
-     * Get the query builder for friendsOfFriends ('follow' Lawyer)
+     * Get the query builder for friendsOfFriends ('follow' User)
      *
      * @param string $groupSlug
      *

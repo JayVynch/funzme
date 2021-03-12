@@ -7,7 +7,7 @@
                 <!-- Primary Navigation Menu -->
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex justify-between h-16">
-                        <div class="flex">
+                        <div class="flex justify-around w-full">
                             <!-- Logo -->
                             <div class="flex-shrink-0 flex items-center">
                                 <inertia-link :href="route('dashboard')">
@@ -18,11 +18,15 @@
                             </div>
 
                             <!-- Navigation Links -->
-                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                           <!--  <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <jet-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
                                     Dashboard
                                 </jet-nav-link>
-                            </div>
+
+                            </div> -->
+                            
+                            <!-- Search Input -->
+                            <user-search></user-search>
                         </div>
 
                         <div class="hidden sm:flex sm:items-center sm:ml-6">
@@ -238,6 +242,7 @@
     import JetDropdownLink from '@/Jetstream/DropdownLink'
     import JetNavLink from '@/Jetstream/NavLink'
     import JetResponsiveNavLink from '@/Jetstream/ResponsiveNavLink'
+    import UserSearch from '@/Pages/Post/Search'
 
     export default {
         components: {
@@ -247,6 +252,7 @@
             JetDropdownLink,
             JetNavLink,
             JetResponsiveNavLink,
+            UserSearch
         },
 
         data() {

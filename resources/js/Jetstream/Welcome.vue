@@ -2,7 +2,7 @@
     <div>
         <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
 
-            <div class="mt-8 text-2xl flex flex-col w-full justify-center items-center">
+            <div class="mt-8 text-2xl flex flex-col w-full items-center">
                 <form @submit.prevent="submit" class="w-2/3">
                     <textarea class="w-full rounded-lg" v-model="form.post" placeholder="what&apos;s on your mind..."></textarea>
                     <input ref="post_upload"  accept="image/*" @change="photoPreview" type="file" class="hidden" />

@@ -6,6 +6,8 @@ use Inertia\Inertia;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\FollowController;
+use App\Http\Controllers\SearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,3 +46,9 @@ Route::delete('/comments/{id}/like', [CommentController::class, 'unLike']);
 Route::post('/posts/{id}/comment',[CommentController::class, 'store' ])->name('post.comment');
 
 Route::get('/posts/{id}/comments',[CommentController::class, 'index' ])->name('post.comments');
+
+Route::post('/users/{email}/follow',[FollowController::class,'getFollowed'])->name('users.follow');
+
+Route::delete('/users/{email}/unfollow',[FollowController::class,'unFollow'])->name('users.unfollow');
+
+Route::get('/users/search',[SearchController::class,'searchUser'])->name('users.search');
