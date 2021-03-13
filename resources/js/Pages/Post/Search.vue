@@ -10,8 +10,8 @@
                 </svg>
           </button>
         </div>
-        <ul v-if="users.length > 0" class="absolute w-full border mt-28 border-gray-300 bg-white py-2 px-4">
-            <div class="flex px-4 border-t border-gray-300" v-for="(user,i) in users" :key="user.id">
+        <div v-if="users.length > 0" class="absolute w-full border mt-28 border-gray-300 bg-white py-2 px-4">
+            <inertia-link :href="route('users.page',user.username)" class="flex px-4 border-t border-gray-300" v-for="(user,i) in users" :key="user.id">
                 <div class="mr-2 flex items-center justify-center">
                     <img class="rounded-full w-8 h-8" :src="user.profile_photo_url" :alt="user.name" />
                 </div>
@@ -19,10 +19,10 @@
                     <div class="flex space-x-1">
                         <span class="font-bold">{{ user.name }}</span>
                     </div>
-                    <div class="text-gray-500 text-md">@elonmusk</div>
+                    <div class="text-gray-500 text-sm">@{{ user.username }}</div>
                 </div>
-            </div>
-        </ul>
+            </inertia-link>
+        </div>
     </div>
 </template>
 

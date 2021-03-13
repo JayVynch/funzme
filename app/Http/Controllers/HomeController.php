@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Inertia\Inertia;
 use App\Models\Posts;
 use Illuminate\Http\Request;
@@ -12,12 +13,23 @@ class HomeController extends Controller
 
     	return Inertia::render('Dashboard',[ 
 
-    		'tweets' => Posts::where(function($query) {
-				            return $query->where('user_id', auth()->id())
-				            ->orWhereIn('user_id',auth()->user()->getFriends()->pluck('id'));
+    		'user' => auth()->user()
+	    ]);
+    }
+
+    public function userPage($user){
+
+    	$user = User::whereUsername($user)->first();
+
+    	return Inertia::render('Post/Profile',[ 
+
+    		'tweets' => Posts::with('user')->where(function($query) use ($user) {
+				            return $query->where('user_id', $user->id)
+				            ->orWhereIn('user_id', $user->getFriends()->pluck('id'));
 				        })            
 				        ->latest()
-				        ->get()
+				        ->get(),
+			'profiler' => $user
 	    ]);
     }
 }

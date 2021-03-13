@@ -52,3 +52,5 @@ Route::post('/users/{email}/follow',[FollowController::class,'getFollowed'])->na
 Route::delete('/users/{email}/unfollow',[FollowController::class,'unFollow'])->name('users.unfollow');
 
 Route::get('/users/search',[SearchController::class,'searchUser'])->name('users.search');
+
+Route::get('/users/{username}/page',[HomeController::class,'userPage'])->name('users.page');

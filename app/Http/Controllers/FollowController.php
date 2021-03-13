@@ -19,38 +19,36 @@ use Illuminate\Http\Request;
 class FollowController extends Controller
 {   
     public function __construct(){
-        return $this->middleware('auth');
+        return $this->middleware('auth:sanctum');
     }
 
     public function followIndex(){
-        $followers = Auth::user()->lawyer->getFriends(12);
-        $groups     = Auth::user()->lawyer->getGroupNames();
-        $firm = Firm::where('user_id', Auth::user()->lawyer->id)->first();
-        $status = Status::where('user_id',Auth::user()->lawyer->id)->first();
-
+        $followers = Auth::user()->getFriends(12);
+        
         if(request()->expectsJson()){
 
             return response()->json(['linkz' => $followers ]);
         }
 
-        return view('follows.index', compact('followers','firm','status','groups'));
+        // return view('follows.index', compact('followers'));
     }
 
     public function getFollowed($email){
 
     	$following = User::whereEmail($email)->first();
 
+
         if(!$following){
-    		return redirect()->route('home');
-    	}
+            return redirect()->back();
+        }
 
-    	//cannot add yourself
-    	if(Auth::id() == $following->id){
-    		return redirect()->back();
-    	}
+        // cannot add yourself
+        if(Auth::id() == $following->id){
+            return redirect()->back();
+        }
 
-    	if(Auth::user()->hasFollowRequestPending($following) || $following->hasFollowRequestPending(Auth::user())){
-    		session()->flash('info','You are already linked each other');
+    	if(Auth::user()->hasFollowRequestPending($following)){
+    		session()->flash('info','You are already sent a follow request');
             return redirect()->back();
     	}
 
@@ -84,23 +82,6 @@ class FollowController extends Controller
         }
     }
 
-    public function searchLinkz(Request $request){
-        $query = request('query');
-
-        $search = User::where('firstname','LIKE','%'.$query.'%')
-                    ->orWhere('lastname','LIKE','%'.$query.'%')
-                    ->get();
-
-        if(!$search){
-            exit();
-        }
-
-        $result =  $search->reject( function($user){
-            return !$user->isFriendWith(Auth::user());
-        });
-
-        return response()->json($result);
-    }
 }
 
 

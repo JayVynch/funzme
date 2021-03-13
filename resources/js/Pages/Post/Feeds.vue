@@ -4,14 +4,14 @@
         <div  class="min-h-screen bg-white py-6 flex flex-col items-center">
             <div class="w-full max-w-xl border border-gray-300 rounded-2xl py-3 px-5 my-3" v-for="(post,i) in posts" :key="post.id">
                 <div class="flex">
-                    <div class="mr-2">
-                        <img class="rounded-full w-16 h-16" :src="$page.props.user.profile_photo_url" :alt="$page.props.user.name" />
-                    </div>
+                    <inertia-link :href="route('users.page',post.user.username)" class="mr-2">
+                        <img class="rounded-full w-16 h-16" :src="post.user.profile_photo_url" :alt="post.user.name" />
+                    </inertia-link>
                     <div>
                         <div class="flex space-x-1">
-                            <span class="font-bold">{{ $page.props.user.name }}</span>
+                            <inertia-link :href="route('users.page',post.user.username)" class="font-bold">{{ post.user.name }}</inertia-link>
                         </div>
-                        <div class="text-gray-500 text-md">@elonmusk</div>
+                        <inertia-link :href="route('users.page',post.user.username)" class="text-gray-500 text-sm">@{{ post.user.username }}</inertia-link>
                     </div>
                 </div>
 
@@ -40,9 +40,6 @@
                         </svg>
                         <span class="text-sm">{{ post.comments_count }}</span>
                     </inertia-link>
-
-                    <!-- follow -->
-                    <follow></follow>
                 </div>
             </div>
         </div>
@@ -53,14 +50,13 @@
     import moment from 'moment';
     import Likes from './Like'
     import PostComment from './Comment'
-    import Follow from './Follow'
+    
 	export default{
         name : 'Feeds',
 
         components : {
             Likes,
             PostComment,
-            Follow
         },
 
         mounted(){

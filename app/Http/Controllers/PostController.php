@@ -24,10 +24,13 @@ class PostController extends Controller
 
     public function index(){
 
-        return response()->json(['data' => Posts::whereUserId(auth()->id())->get()]);
-        // return Inertia::render('Post/Feeds',[
-        //     'posts' => Posts::whereUserId(auth()->id())->get()
-        // ]);
+        $tweets = Posts::with('user')->where(function($query) {
+                            return $query->where('user_id', auth()->id())
+                            ->orWhereIn('user_id',auth()->user()->getFriends()->pluck('id'));
+                        })            
+                        ->latest()
+                        ->get();
+        return response()->json(['data' => $tweets]);
     }
 
     public function store(Request $request){

@@ -29,6 +29,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'username',
         'email',
         'password',
     ];
@@ -61,6 +62,10 @@ class User extends Authenticatable
      */
     protected $appends = [
         'profile_photo_url',
+        'isFollower',
+        'isFollowing',
+        'countFollower',
+        'countFollowing'
     ];
 
     public function posts(){
@@ -69,5 +74,29 @@ class User extends Authenticatable
 
     public function comments(){
       return $this->hasMany(Comment::class,'user_id');
+    }
+
+    public function follower(){
+      return $this->hasMany(Follow::class,'receiver_id');
+    }
+
+    public function following(){
+      return $this->hasMany(Follow::class,'sender_id');
+    }
+
+    public function getIsFollowerAttribute(){
+        return $this->follower()->exists();  
+    }
+
+    public function getIsFollowingAttribute(){
+        return $this->following()->exists();  
+    }
+
+    public function getCountFollowerAttribute(){
+        return $this->follower()->count();  
+    }
+
+    public function getCountFollowingAttribute(){
+        return $this->following()->count();  
     }
 }
