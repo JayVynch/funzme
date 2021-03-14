@@ -19,8 +19,8 @@
 							      	<h1 class="text-2xl font-semibold">{{ profiler.name }}</h1>
 							      	<div class="text-white text-sm">@{{ profiler.username }}</div>
 							      	
-							      	<div class="py-2 flex space-x-2 absolute right-3 bottom-0">
-										<follow :email="profiler.email" :isFollowing="profiler.isFollowing"></follow>
+							      	<div class="py-2 space-x-2 absolute right-3 bottom-0" :class="classes">
+										<follow :email="profiler.email" :isFollower="profiler.isFollower"></follow>
 									</div>
 									<div
 										class="py-4 flex justify-center items-center w-full divide-x divide-gray-400 divide-solid">
@@ -78,13 +78,12 @@
 						                        </svg>
 						                        <span class="text-sm">{{ post.comments_count }}</span>
 						                    </inertia-link>
-
-						                    <!-- follow -->
-						                    <follow></follow>
 						                </div>
 						            </div>
 						        </div>
 						    </section>
+
+						    
 						</div>
 					</div>
 				</div>
@@ -100,6 +99,7 @@
     import Likes from './Like'
     import PostComment from './Comment'
     import Follow from './Follow'
+    
 
 	export default{
 		name : 'Profile',
@@ -108,7 +108,7 @@
 			AppLayout,
 			Likes,
 			PostComment,
-			Follow
+			Follow,
 		},
 
 		props : ['tweets','profiler'],
@@ -119,6 +119,13 @@
 
                 return moment(time).fromNow();
             },
+        },
+
+        computed : {
+
+        	classes(){
+        		return this.profiler.id == this.$page.props.user.id ? 'hidden' : 'flex'
+        	}
         }        
     }
 </script>
