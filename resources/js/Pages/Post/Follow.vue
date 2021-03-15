@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<button class="inline-flex items-center px-2 py-2 bg-transparent border border-gray-300 rounded-2xl font-semibold text-xs uppercase tracking-widest focus:outline-none transition ease-in-out duration-150 font-bold hover:bg-blue-800" @click="getFollow">
+		<button class="inline-flex items-center px-2 py-2 bg-transparent border border-gray-300 rounded-2xl font-semibold text-xs uppercase tracking-widest focus:outline-none transition ease-in-out duration-150 font-bold hover:bg-white hover:text-blue-300" @click="getFollow">
 			<span class="mr-2"></span>{{ followOption }}
 			<span class="ml-2"></span>
 		</button>
@@ -8,6 +8,9 @@
 		<!-- modal for follow/unfollow -->
 	    <follow-unfollow-modal :show="showable">
             <template #title>
+            	<div class="bg-white ml-auto flex justify-end px-4 py-2 w-full text-red-500 mt-4" >
+                    <span class="cursor-pointer" @click="cancel">X</span>
+                </div>
             </template>
             <template #content>
                 <div class="flex flex-col mt-7 justify-center items-center w-full">
@@ -61,7 +64,7 @@
 				axios.post(`/users/${this.email}/follow`,{
 					emial : this.email
 				}).then( ()=>{
-					this.showable = true
+					//
 				})
 			},
 
@@ -76,6 +79,10 @@
 			openModal(){
                 this.showable = true;
             },
+
+            cancel(){
+            	this.showable = false;
+            }
 		},
 
 		computed : {

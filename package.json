@@ -27,7 +27,9 @@
         "vue-loader": "^16.1.2"
     },
     "dependencies": {
+        "laravel-echo": "^1.10.0",
         "moment": "^2.29.1",
-        "momment": "^0.0.1"
+        "momment": "^0.0.1",
+        "pusher-js": "^7.0.3"
     }
 }
