@@ -158,6 +158,7 @@
 						            </div>
 						        </div>
 
+						        <!-- modal for comment with images -->
 						        <form @submit.prevent="submit" class="w-2/3">
 						        	<input ref="comment_upload"  accept="image/*" @change="photoPreview" type="file" class="hidden" />
 				                    <comment-image-modal :show="showable">
@@ -242,6 +243,11 @@
 		},
 
 		mounted(){
+
+			Echo.channel('newCommenting').listen('NewComment', (e) => {
+                this.comments.unshift(e.comment);
+            });
+
 			this.comments = this.$page.props.postWithComments.comments;
 
 			this.countComment = this.$page.props.postWithComments.comments_count;

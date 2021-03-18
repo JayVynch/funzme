@@ -18628,6 +18628,11 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
+    var _this = this;
+
+    Echo.channel('newCommenting').listen('NewComment', function (e) {
+      _this.comments.unshift(e.comment);
+    });
     this.comments = this.$page.props.postWithComments.comments;
     this.countComment = this.$page.props.postWithComments.comments_count;
   },
@@ -18668,12 +18673,12 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     photoPreview: function photoPreview() {
-      var _this = this;
+      var _this2 = this;
 
       var reader = new FileReader();
 
       reader.onload = function (e) {
-        _this.preview = e.target.result;
+        _this2.preview = e.target.result;
       };
 
       reader.readAsDataURL(this.$refs.comment_upload.files[0]);
@@ -18723,6 +18728,10 @@ __webpack_require__.r(__webpack_exports__);
 
     axios.get('/posts').then(function (r) {
       _this.posts = r.data.data;
+    });
+    Echo.channel('newPosting').listen('NewPost', function (e) {
+      _this.posts.unshift(e.post); // this.$emit('added', 1);
+
     });
   },
   data: function data() {
@@ -23131,7 +23140,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         onClick: _cache[3] || (_cache[3] = function () {
           return $options.makeAComment && $options.makeAComment.apply($options, arguments);
         })
-      }, [_hoisted_38])])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("form", {
+      }, [_hoisted_38])])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" modal for comment with images "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("form", {
         onSubmit: _cache[9] || (_cache[9] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
           return _ctx.submit && _ctx.submit.apply(_ctx, arguments);
         }, ["prevent"])),
@@ -25353,12 +25362,11 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__.default({
   broadcaster: 'pusher',
-  key: "",
+  key: "somekindashit2200",
   cluster: "mt1",
-  forceTLS: true,
+  forceTLS: false,
   wsHost: window.location.hostname,
-  wsPort: 6001,
-  disableStats: true
+  wsPort: 6001
 });
 
 /***/ }),

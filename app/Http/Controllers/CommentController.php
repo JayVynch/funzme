@@ -9,6 +9,7 @@ use App\Actions\Like\LikeAComment;
 use App\Actions\Like\DeleteLike;
 use Illuminate\Http\File;
 use Illuminate\Support\Facades\Storage;
+use App\Events\NewComment;
 
 class CommentController extends Controller
 {
@@ -26,7 +27,7 @@ class CommentController extends Controller
     public function store(Request $request){
 
         $this->validate($request,[
-            'comment' => 'string|nullable',
+            'reply' => 'string|nullable',
             'comment_image' => 'image|nullable'
         ]);
 
@@ -39,8 +40,8 @@ class CommentController extends Controller
             return redirect()->back();
         }
 
-        if ($request->comment) {
-            $reply = $request->comment;
+        if ($request->reply) {
+            $comment = $request->reply;
         }
 
         if($request->hasFile('comment_image')){
@@ -52,10 +53,12 @@ class CommentController extends Controller
         $image = $strings ? $strings[3] : null;
 
         $comment = $post->comments()->create([
-            'reply' => $reply,
+            'reply' => $comment,
             'user_id' => auth()->id(),
             'comment_upload' => $image
         ]);
+
+        broadcast(new NewComment($comment));
 
         $authComment = auth()->user()->comments()->save($comment);
 

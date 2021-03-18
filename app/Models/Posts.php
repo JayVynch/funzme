@@ -20,7 +20,7 @@ class Posts extends Model
 
     protected $appends = ['isLiked','postUrl'];
 
-    protected $with = ['comments'];
+    protected $with = ['comments','user'];
     
     protected $withCount = ['likes','comments'];
 

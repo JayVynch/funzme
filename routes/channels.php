@@ -16,3 +16,13 @@ use Illuminate\Support\Facades\Broadcast;
 Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
 });
+
+Broadcast::channel('newPosting', function($user){
+	// return ($user->isFriendsWith(auth()->user()) || ((int) $user->id === (int) $id));
+	return $user;
+});
+
+Broadcast::channel('newCommenting', function($user){
+	// return ($user->isFriendsWith(auth()->user()) || ((int) $user->id === (int) $id));
+	return $user;
+});

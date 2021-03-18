@@ -9,6 +9,7 @@ use Illuminate\Http\File;
 use App\Actions\Like\LikeAPost;
 use App\Actions\Like\DeleteLike;
 use Illuminate\Support\Facades\Storage;
+use App\Events\NewPost;
 
 class PostController extends Controller
 {
@@ -17,7 +18,8 @@ class PostController extends Controller
      * UserController constructor.
      * @param $pathToProfileImage
      */
-    public function __construct()
+    public function __construct() // 'message'   => $this->notification->.' Accepted your  Link Request ',
+            // 'link' => '/follow'
     {
         $this->middleware(['auth:sanctum']);
     }
@@ -40,7 +42,8 @@ class PostController extends Controller
             'post_image' => 'image|nullable'
         ]);
 
-        $path = null;
+        $path = null; // 'message'   => $this->notification->.' Accepted your  Link Request ',
+            // 'link' => '/follow'
         $post = '';
 
         if ($request->post) {
@@ -59,6 +62,8 @@ class PostController extends Controller
             'tweets' => $post,
             'post_photos' => $image
         ]);
+
+        broadcast(new NewPost($post));
 
         return redirect()->back();
     }
