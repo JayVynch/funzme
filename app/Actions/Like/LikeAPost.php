@@ -4,6 +4,7 @@ namespace App\Actions\Like;
 
 use App\Models\User;
 use App\Models\Posts;
+use App\Notifications\LikeNotification;
 
 /**
 * 	create a like from a post which the user liked
@@ -23,9 +24,9 @@ class LikeAPost
 
         // broadcast( new LikeAPost ($post));
 
-        // if(Auth::user()->lawyer->id != $post->owner->id){
-        //     $post->owner->user->notify( new LikesNotification($post));
-        // }
+        if(auth()->id() != $post->user->id){
+            $post->user->notify( new LikeNotification($post));
+        }
 
         // broadcast( new NotificationsEvent(auth()->user()->unreadNotifications()->count()));
 

@@ -10,6 +10,7 @@ use App\Actions\Like\DeleteLike;
 use Illuminate\Http\File;
 use Illuminate\Support\Facades\Storage;
 use App\Events\NewComment;
+use App\Notifications\CommentNotification;
 
 class CommentController extends Controller
 {
@@ -62,9 +63,9 @@ class CommentController extends Controller
 
         $authComment = auth()->user()->comments()->save($comment);
 
-        // if( auth()->id() != $comment->commenter->id){
-        //     $post->owner->user->notify(new CommentsNotification($comment));
-        // }
+        if( auth()->id() != $comment->commenter->id){
+            $post->user->notify(new CommentNotification($comment));
+        }
 
         // broadcast( new CommentPostEvent($comment));
         // broadcast( new NotificationsEvent(auth()->user()->unreadNotifications()->count()));
