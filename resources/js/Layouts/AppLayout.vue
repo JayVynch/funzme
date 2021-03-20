@@ -27,6 +27,8 @@
                             
                             <!-- Search Input -->
                             <user-search></user-search>
+
+                            <user-notifications></user-notifications>
                         </div>
 
                         <div class="hidden sm:flex sm:items-center sm:ml-6">
@@ -243,6 +245,7 @@
     import JetNavLink from '@/Jetstream/NavLink'
     import JetResponsiveNavLink from '@/Jetstream/ResponsiveNavLink'
     import UserSearch from '@/Pages/Post/Search'
+    import UserNotifications from '@/Pages/Post/Notifications'
 
     export default {
         components: {
@@ -252,7 +255,8 @@
             JetDropdownLink,
             JetNavLink,
             JetResponsiveNavLink,
-            UserSearch
+            UserSearch,
+            UserNotifications
         },
 
         data() {

@@ -54,3 +54,7 @@ Route::delete('/users/{email}/unfollow',[FollowController::class,'unFollow'])->n
 Route::get('/users/search',[SearchController::class,'searchUser'])->name('users.search');
 
 Route::get('/users/{username}/page',[HomeController::class,'userPage'])->name('users.page');
+
+Route::get('/users/{username}/notifications',[HomeController::class,'notifications'])->name('users.notifications');
+
+Route::post('/notifications/{id}',[HomeController::class,'markNotificationAsRead']);

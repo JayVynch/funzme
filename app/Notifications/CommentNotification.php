@@ -58,8 +58,8 @@ class CommentNotification extends Notification implements ShouldQueue
     {
         return [
             return [
-            'message'   => $this->comment->commenter->name.' made a comment on your  Post ',
-            'link' => route('post.comment',$this->comment->id)
+            'message'   => auth()->user()->name.' made a comment on your  Post ',
+            'link' => route('post.comments',$this->comment->id)
         ];
         ];
     }

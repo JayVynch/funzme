@@ -32,4 +32,21 @@ class HomeController extends Controller
 			'profiler' => $user
 	    ]);
     }
+
+    public function notifications(){
+       $notifications = auth()->user()->unreadNotifications()->limit(10)->get()->toArray();
+
+       return response()->json(['notifications' => $notifications ]);
+    }
+
+    public function markNotificationAsRead(Request $request){
+
+        dd($request->id);
+
+        $notification = auth()->user()->unreadNotifications()->whereId($request->id)->first();
+
+        $notification->markAsRead();
+
+        return response()->json(['notifications' => 'marked as read' ]);
+    }
 }

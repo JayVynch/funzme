@@ -7,20 +7,20 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class GeneralNotification extends Notification
+class GeneralNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    protected $notification;
+    protected $follow;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($notification)
+    public function __construct($follow)
     {
-        $this->notification = $notification
+        $this->follow = $follow;
     }
 
     /**
@@ -58,8 +58,8 @@ class GeneralNotification extends Notification
     {
         return [
             
-            // 'message'   => $this->notification->.' Accepted your  Link Request ',
-            // 'link' => '/follow'
+            'message'   => $this->follow->name.' is now following you ',
+            'link' => route('users.page',$this->follow->username)
         ];
     }
 }

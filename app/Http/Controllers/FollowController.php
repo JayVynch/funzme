@@ -12,7 +12,7 @@ use Auth;
 use App\Models\User;
 // use App\Model\Status;
 use Illuminate\Http\Request;
-// use App\Notifications\LinkNotification;
+use App\Notifications\GeneralNotification;
 // use App\Notifications\AcceptLinkNotification;
 
 
@@ -55,6 +55,8 @@ class FollowController extends Controller
     	Auth::user()->befriend($following);
 
         $following->acceptFollowRequest(Auth::user());
+
+        $following->notify(new GeneralNotification(auth()->user()));
 
     	return response()->json(['message' => 'Request Sent']);
     }

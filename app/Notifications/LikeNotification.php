@@ -57,8 +57,8 @@ class LikeNotification extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            'message'   => $this->likeNotify->user->name.' Liked your  Post ',
-            'link' => route('post.comment',$this->likeNotify->id)
+            'message'   => auth()->user()->name.' Liked your  Post ',
+            'link' => route('post.comments',$this->likeNotify->id)
         ];
     }
 }
