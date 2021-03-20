@@ -18925,7 +18925,7 @@ __webpack_require__.r(__webpack_exports__);
       return moment__WEBPACK_IMPORTED_MODULE_1___default()(time).fromNow();
     },
     getNotification: function getNotification() {
-      return this.hasNotification = true;
+      return this.hasNotification = !this.hasNotification;
     },
     markAsRead: function markAsRead(id) {
       axios.post('/notifications/' + id, {

@@ -65,7 +65,7 @@
             },
 
             getNotification(){
-            	return this.hasNotification = true;
+            	return this.hasNotification = !this.hasNotification;
             },
 
             markAsRead(id){

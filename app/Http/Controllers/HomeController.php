@@ -41,8 +41,6 @@ class HomeController extends Controller
 
     public function markNotificationAsRead(Request $request){
 
-        dd($request->id);
-
         $notification = auth()->user()->unreadNotifications()->whereId($request->id)->first();
 
         $notification->markAsRead();
