@@ -18733,8 +18733,7 @@ __webpack_require__.r(__webpack_exports__);
       _this.posts = r.data.data;
     });
     Echo.channel('newPosting').listen('NewPost', function (e) {
-      _this.posts.unshift(e.post); // this.$emit('added', 1);
-
+      _this.posts.unshift(e.post);
     });
   },
   data: function data() {
@@ -18917,7 +18916,17 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     axios.get("/users/".concat(this.$page.props.user.username, "/notifications")).then(function (e) {
-      _this.notifications = e.data.notifications;
+      console.log(e); // this.notifications = e.data.notifications;
+    });
+    Echo["private"]("App.Models.User.".concat(this.$page.props.user.id)).notification(function (n) {
+      var notification = new Array();
+      var data = {};
+      data['data'] = n;
+      notification[0] = data;
+      console.log(n);
+      console.log(notification);
+
+      _this.notifications.unshift(data);
     });
   },
   methods: {

@@ -67,7 +67,6 @@
 
             Echo.channel('newPosting').listen('NewPost', (e) => {
                 this.posts.unshift(e.post);
-                // this.$emit('added', 1);
             });
         },
 

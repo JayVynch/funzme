@@ -53,7 +53,19 @@
 
 			axios.get(`/users/${this.$page.props.user.username}/notifications`).
 			then( (e) => {
-				this.notifications = e.data.notifications;
+				console.log(e)
+				// this.notifications = e.data.notifications;
+			})
+
+			Echo.private(`App.Models.User.${this.$page.props.user.id}`).
+			notification((n) => {
+				var notification = new Array();
+				var data = {};
+				data['data'] = n;
+				notification[0] = data ;
+				console.log(n)
+				console.log(notification)
+				this.notifications.unshift(data);
 			})
 		},
 

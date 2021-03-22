@@ -22,8 +22,6 @@ class LikeAPost
 
         $like = $post->like();
 
-        // broadcast( new LikeAPost ($post));
-
         if(auth()->id() != $post->user->id){
             $post->user->notify( new LikeNotification($post));
         }
