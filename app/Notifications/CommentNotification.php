@@ -57,10 +57,11 @@ class CommentNotification extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            return [
             'message'   => auth()->user()->name.' made a comment on your  Post ',
-            'link' => route('post.comments',$this->comment->id)
-        ];
+            'link' => route('post.comments',$this->comment->id),
+            'id' => $this->id,
+            'post_id' => $this->likeNotify->id,
+            'user_id' => auth()->id(),
         ];
     }
 }

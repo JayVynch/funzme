@@ -51,25 +51,30 @@
 
 		mounted(){
 
-			axios.get(`/users/${this.$page.props.user.username}/notifications`).
-			then( (e) => {
-				console.log(e)
-				// this.notifications = e.data.notifications;
-			})
+			this.getNotifications();
 
 			Echo.private(`App.Models.User.${this.$page.props.user.id}`).
 			notification((n) => {
 				var notification = new Array();
+				var id = n.id;
 				var data = {};
+				data['id'] = n.id;
 				data['data'] = n;
-				notification[0] = data ;
-				console.log(n)
-				console.log(notification)
+				notification[0] = data;
 				this.notifications.unshift(data);
+
+				// setTimeout( () => this.getNotifications(),500);
 			})
 		},
 
 		methods : {
+
+			getNotifications(){
+				axios.get(`/users/${this.$page.props.user.username}/notifications`).
+				then( (e) => {
+					this.notifications = e.data.notifications;
+				})
+			},
 
             ago(time){
 
@@ -84,7 +89,7 @@
             	axios.post('/notifications/' + id,{
             		id : id
             	})
-            }
+            },
         }
 	}
 </script>

@@ -58,3 +58,7 @@ Route::get('/users/{username}/page',[HomeController::class,'userPage'])->name('u
 Route::get('/users/{username}/notifications',[HomeController::class,'notifications'])->name('users.notifications');
 
 Route::post('/notifications/{id}',[HomeController::class,'markNotificationAsRead']);
+
+Route::delete('/notifications/{id}',[HomeController::class,'destroyNotification']);
+
+Route::post('/notification/{id}',[HomeController::class,'updateNotification']);

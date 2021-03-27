@@ -18915,21 +18915,27 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    axios.get("/users/".concat(this.$page.props.user.username, "/notifications")).then(function (e) {
-      console.log(e); // this.notifications = e.data.notifications;
-    });
+    this.getNotifications();
     Echo["private"]("App.Models.User.".concat(this.$page.props.user.id)).notification(function (n) {
       var notification = new Array();
+      var id = n.id;
       var data = {};
+      data['id'] = n.id;
       data['data'] = n;
       notification[0] = data;
-      console.log(n);
-      console.log(notification);
 
-      _this.notifications.unshift(data);
+      _this.notifications.unshift(data); // setTimeout( () => this.getNotifications(),500);
+
     });
   },
   methods: {
+    getNotifications: function getNotifications() {
+      var _this2 = this;
+
+      axios.get("/users/".concat(this.$page.props.user.username, "/notifications")).then(function (e) {
+        _this2.notifications = e.data.notifications;
+      });
+    },
     ago: function ago(time) {
       return moment__WEBPACK_IMPORTED_MODULE_1___default()(time).fromNow();
     },

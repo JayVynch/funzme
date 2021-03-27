@@ -58,6 +58,9 @@ class LikeNotification extends Notification implements ShouldQueue
     {
         return [
             'message'   => auth()->user()->name.' Liked your  Post ',
+            'id' => $this->id,
+            'post_id' => $this->likeNotify->id,
+            'user_id' => auth()->id(),
             'link' => route('post.comments',$this->likeNotify->id)
         ];
     }

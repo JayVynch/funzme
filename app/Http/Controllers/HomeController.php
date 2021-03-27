@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Inertia\Inertia;
 use App\Models\Posts;
+use App\Models\NotifiableActivities;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -47,5 +48,22 @@ class HomeController extends Controller
         $notification->markAsRead();
 
         return response()->json(['notifications' => 'marked as read' ]);
+    }
+
+    public function destroyNotification(Request $request){
+
+        $notification = auth()->user()->notifications()
+                        ->whereId($request->id)->first();
+
+        $notification->delete();
+
+        return response()->json(['notifications' => 'notification removed' ]);
+    }
+
+    public function updateNotification(Request $request){
+
+        $notice = (new NotifiableActivities)->updateNoticeables($request->id);
+
+        return response()->json(['notifications' => 'notification updated' ]);
     }
 }

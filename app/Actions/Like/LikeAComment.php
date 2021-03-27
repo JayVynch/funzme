@@ -6,7 +6,7 @@ use App\Models\User;
 use App\Models\Comment;
 
 /**
-* 	create a like from a post which the user liked
+* 	create a like from a comment which the user liked
 */
 class LikeAComment 
 {
@@ -21,13 +21,18 @@ class LikeAComment
 
         $like = $comment->like();
 
-        // broadcast( new LikeAComment ($comment));
+        if(auth()->id() != $comment->user->id){
 
-        // if(Auth::user()->lawyer->id != $comment->owner->id){
-        //     $comment->owner->user->notify( new LikesNotification($comment));
-        // }
+            $comment->user->notify( new LikeNotification($comment));
 
-        // broadcast( new NotificationsEvent(auth()->user()->unreadNotifications()->count()));
+            $notisme = $comment->user->unreadNotifications()->get();
+
+            $notisme->last( function($value) use ($comment){
+            
+                (new NotifiableActivities)->fillNoticeables($comment,$value->data['id']);
+            });
+
+        }
 
         return response()->json(['liked' => $comment->isLiked]);
     }

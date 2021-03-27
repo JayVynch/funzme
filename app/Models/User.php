@@ -3,7 +3,8 @@
 namespace App\Models;
 
 use App\Models\Posts;
-use app\Models\Comment;
+use App\Models\Comment;
+use App\Models\NotifiableActivities;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -98,5 +99,9 @@ class User extends Authenticatable
 
     public function getCountFollowingAttribute(){
         return $this->following()->count();  
+    }
+
+    public function notice(){
+        return $this->hasMany(NotifiableActivities::class,'user_id');
     }
 }
