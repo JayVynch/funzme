@@ -12,7 +12,10 @@
             <template #content>
                 <div v-if="hasNotification" class="absolute right-0 origin-top-right block mt-2 bg-white rounded-md shadow-lg overflow-hidden z-20" style="width:20rem;">
 		            <div class="py-2">
-		                <inertia-link v-for="(notification, i ) in notifications" :key="notification.id" :href="notification.data.link" class="flex items-center px-4 py-3 border-b hover:bg-gray-100 -mx-2" @click="markAsRead(notification.id)">
+		            	<div v-if="notifications.length < 1" class="flex justify-center items-center px-4 py-3 border-b hover:bg-gray-100 -mx-2 text-gray-600 text-sm text-center w-full">
+		            		No Notifications yet
+		            	</div>
+		                <inertia-link v-if="notifications.length > 0" v-for="(notification, i ) in notifications" :key="notification.id" :href="notification.data.link" class="flex items-center px-4 py-3 border-b hover:bg-gray-100 -mx-2" @click="markAsRead(notification.id)">
 		                    <img class="h-8 w-8 rounded-full object-cover mx-1" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80" alt="avatar">
 		                    <div class="text-gray-600 text-sm w-full mx-2 flex flex-col">
 		                        <div class="font-bold w-full">{{ notification.data.message }}
@@ -22,7 +25,7 @@
 		                </inertia-link>
 		                
 		            </div>
-		            <inertia-link :href="route('dashboard')" class="block bg-gray-800 text-white text-center font-bold py-2">See all notifications</inertia-link>
+		            <inertia-link v-if="notifications.length > 10" :href="route('dashboard')" class="block bg-gray-800 text-white text-center font-bold py-2">See all notifications</inertia-link>
 		        </div>
             </template>
         </notification-dropdown>
@@ -65,6 +68,10 @@
 
 				// setTimeout( () => this.getNotifications(),500);
 			})
+
+			Echo.channel('Deleting').listen('DeleteNotificationEvent', () => {
+                this.getNotifications();
+            });
 		},
 
 		methods : {

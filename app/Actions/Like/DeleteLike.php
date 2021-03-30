@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Posts;
 use App\Models\Comment;
 use App\Models\NotifiableActivities;
+use App\Events\DeleteNotificationEvent;
 
 /**
 *  Responsible for deleting a like of a post
@@ -19,13 +20,26 @@ class DeleteLike
         $notification = NotifiableActivities::where('noticeable_id', $postId)
                         ->where('user_id',auth()->id())->first();
 
+
         if(!$post){
             return response()->json(['message' => 'sorry could not find post']);
         }
 
-        $post->unLike();
+        $notify = $post->user->notifications()->where(function($query) use ($notification){
+            $query->where(function ($q) use ($notification) {
+                $q->read()->whereId($notification->notification_id);
+            })->orWhere(function ($q) use ($notification) {
+                $q->unread()->whereId($notification->notification_id);
+            });
+        })->first();
 
-        $post->user->notifications()->whereId($notification->notification_id)->delete();
+        broadcast( new DeleteNotificationEvent($notification));
+        
+        $notify->delete();
+
+        $notification->delete();
+        
+        $post->unLike();
 
         return response()->json(['unLike' => $post->isLiked]);
     }
@@ -43,6 +57,8 @@ class DeleteLike
         $comment->unLike();
 
         $comment->user->notifications()->whereId($notification->notification_id)->delete();
+
+        event( new DeleteNotificationEvent($notification));
         // broadcast( new destroyCommentLike ($comment));
 
         return response()->json(['unLike' => $comment->isLiked]);

@@ -18,11 +18,15 @@ Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
 });
 
 Broadcast::channel('newPosting', function($user){
-	// return ($user->isFriendsWith(auth()->user()) || ((int) $user->id === (int) $id));
+	// return ($user->isFriendWith(auth()->user()) || ((int) $user->id === (int) $id));
 	return $user;
 });
 
 Broadcast::channel('newCommenting', function($user){
-	// return ($user->isFriendsWith(auth()->user()) || ((int) $user->id === (int) $id));
+	// return ($user->isFriendWith(auth()->user()) || ((int) $user->id === (int) $id));
+	return $user;
+});
+
+Broadcast::channel('Deleting',function ($user){
 	return $user;
 });
