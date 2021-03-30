@@ -62,3 +62,5 @@ Route::post('/notifications/{id}',[HomeController::class,'markNotificationAsRead
 Route::delete('/notifications/{id}',[HomeController::class,'destroyNotification']);
 
 Route::post('/notification/{id}',[HomeController::class,'updateNotification']);
+
+Route::get('/users/private/message',[ChatController::class,'index'])->name('users.chat');
