@@ -49,6 +49,16 @@ trait Followers {
     {
         return $this->findFriendship($recipient)->whereSenderId($recipient)->whereStatus(FollowStatus::PENDING)->exists();
     }
+
+    /**
+     * @param User $recipient
+     *
+     * @return bool
+     */
+    public function hasFollowingRequestPending(User $recipient)
+    {
+        return $this->findFriendship($recipient)->whereReceiverId($recipient)->whereStatus(FollowStatus::PENDING)->exists();
+    }
     
     /**
      * @param User $recipient
@@ -77,9 +87,12 @@ trait Followers {
      */
     public function acceptFollowRequest(User $recipient)
     {
-        $updated = $this->findFriendship($recipient)->whereReceiverId($this->id)->update([
+        $updated = Follow::betweenUser($recipient,$this)->update([
             'status' => FollowStatus::ACCEPTED,
         ]);
+        // $updated = Follow::where('sender_id',$recipient->id)->first();
+
+        dd($updated);
         // Event::fire('friendships.accepted', [$this, $recipient]);
       
         return $updated;
@@ -298,52 +311,12 @@ trait Followers {
         }
         // if sender has a friendship with the recipient return false
         if ($friendship = $this->getFriendship($recipient)) {
-            // if previous friendship was Denied then let the user send fr
+            // if previous friendship was Denied then let the user send fresh one
             if ($friendship->status != FollowStatus::DENIED) {
                 return false;
             }
         }
         return true;
-    }
-
-    /**
-    * Get links from Users from the same law school
-    * @param int $perPage
-    * @return \Illuminate\Database\Eloquent\Collection
-    */
-
-    public function lawSchoolMates($perPage){
-
-        $query = User::where('nls', auth()->user()->User->nls)->pluck('id')->all();
-
-        return $this->getOrPaginate($query,$perPage);
-
-    }
-
-    /**
-    * Get links from Users from the Branch
-    * @param int $perPage
-    * @return \Illuminate\Database\Eloquent\Collection
-    */
-
-    public function lawBranchMates($perPage){
-
-        $query = User::where('branch', auth()->user()->User->branch)->pluck('id')->all();
-
-        return $this->getOrPaginate($query,$perPage);
-    }
-
-    /**
-    * Get links from Users from the same location
-    * @param int $perPage
-    * @return \Illuminate\Database\Eloquent\Collection
-    */
-
-    public function lawLocationMates($perPage){
-
-        $query = User::where('location', auth()->user()->User->location)->pluck('id')->all();
-
-        return $this->getOrPaginate($query,$perPage);
     }
   
     /**
@@ -353,7 +326,7 @@ trait Followers {
      */
     private function findFriendship($recipient)
     {
-        return Follow::betweenUsers($this, $recipient);
+        return Follow::betweenUser($this, $recipient);
     }
     
     /**

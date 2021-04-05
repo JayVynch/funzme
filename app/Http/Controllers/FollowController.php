@@ -45,14 +45,16 @@ class FollowController extends Controller
         // cannot add yourself
         if(Auth::id() == $following->id){
             return redirect()->back();
+        }   
+
+
+        if(Auth::user()->hasFollowingRequestPending($following)){
+            session()->flash('info','You are already sent a follow request');
+            return redirect()->back();
         }
 
-    	if(Auth::user()->hasFollowRequestPending($following)){
-    		session()->flash('info','You are already sent a follow request');
-            return redirect()->back();
-    	}
-
-    	Auth::user()->befriend($following);
+        Auth::user()->befriend($following);
+        // dd("ok");
 
         $following->acceptFollowRequest(Auth::user());
 

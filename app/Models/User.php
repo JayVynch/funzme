@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Chat;
 use App\Models\Posts;
 use App\Models\Comment;
 use App\Models\NotifiableActivities;
@@ -68,6 +69,10 @@ class User extends Authenticatable
         'countFollower',
         'countFollowing'
     ];
+
+    public function chat(){
+        return $this->hasMany(Chat::class,'user_id');
+    }
 
     public function posts(){
         return $this->hasMany(Posts::class,'user_id');

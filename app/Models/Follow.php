@@ -63,7 +63,7 @@ class Follow extends Model
             ->where('sender_type', $model->getMorphClass());
     }
 
-     /**
+    /**
      * @param $query
      * @param Model $sender
      * @param Model $recipient
@@ -79,5 +79,19 @@ class Follow extends Model
             });
         });
     }
+
+    /**
+     * @param $query
+     * @param Model $sender
+     * @param Model $recipient
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeBetweenUser($query, $sender, $recipient)
+    {
+        $query->where(function ($queryIn) use ($sender, $recipient){
+            $queryIn->whereSenderId($sender->id)->whereReceiverId($recipient->id);
+        });
+    }
+
 
 }
