@@ -18676,9 +18676,6 @@ __webpack_require__.r(__webpack_exports__);
       type: Object,
       "default": null
     },
-    guess: {
-      "default": null
-    },
     messages: {
       type: Array,
       "default": []
@@ -18697,7 +18694,7 @@ __webpack_require__.r(__webpack_exports__);
         contact_id: this.contact.id,
         message: text
       }).then(function (response) {
-        _this.$emit('new', response.data);
+        _this.$emit('new', response.data.message);
       });
     },
     persist: function persist(file) {
@@ -18809,9 +18806,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    // Echo.channel(`dm.${this.selectedContact.id}`).listen('NewChatMessage', (e) => {
-    //     this.handleIncoming(e.message);
-    // });
+    this.liveListen();
     axios.get("/users/".concat(this.$page.props.user.id, "/contacts")).then(function (response) {
       _this.contacts = response.data;
     });
@@ -18832,6 +18827,17 @@ __webpack_require__.r(__webpack_exports__);
       if (this.selectedContact && message.sender == this.selectedContact.id) {
         this.saveNewMessage(message);
         return;
+      }
+    },
+    liveListen: function liveListen() {
+      var _this3 = this;
+
+      if (this.selectedContact) {
+        Echo["private"]("dm.".concat(this.selectedContact.id)).listen('NewChatMessage', function (e) {
+          console.log(e);
+
+          _this3.handleIncoming(e.message);
+        });
       }
     }
   },
@@ -23324,10 +23330,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   , ["src", "alt"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.contact.name), 1
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <span class=\"connected text-green-500 ml-2\" >\n                    <svg width=\"6\" height=\"6\">\n                        <circle cx=\"3\" cy=\"3\" r=\"3\" fill=\"currentColor\"></circle>\n                    </svg>\n                </span> ")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_feeds, {
-    messages: $props.messages
+    messages: $props.messages,
+    contact: $props.contact
   }, null, 8
   /* PROPS */
-  , ["messages"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_composer, {
+  , ["messages", "contact"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_composer, {
     onSend: $options.sendMessage,
     onFileReady: $options.persist
   }, null, 8
@@ -23361,7 +23368,7 @@ var _hoisted_1 = {
   "class": "clearfix2"
 };
 var _hoisted_2 = {
-  "class": "bg-gray-100 rounded px-5 py-2 my-2 mx-2 text-gray-700 relative",
+  "class": "bg-blue-300 rounded px-5 py-2 my-2 mx-2 text-gray-700 relative",
   style: {
     "max-width": "300px"
   }
@@ -23379,14 +23386,14 @@ var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data,
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("ul", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("li", _hoisted_1, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.messages, function (message) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", {
       ref: "feed",
-      "class": "w-full flex${message.sender == contact.id ? ' justify-start ' : ' justify-end'  }",
-      key: message.id
+      key: message.id,
+      "class": "w-full flex".concat(message.sender == $props.contact.id ? ' justify-start ' : ' justify-end')
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(message.message), 1
     /* TEXT */
     ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.ago(message.created_at)), 1
     /* TEXT */
-    )])], 512
-    /* NEED_PATCH */
+    )])], 2
+    /* CLASS */
     );
   }), 128
   /* KEYED_FRAGMENT */

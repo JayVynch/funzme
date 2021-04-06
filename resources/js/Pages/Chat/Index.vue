@@ -25,10 +25,8 @@
 		},
 
 		mounted() {
-						
-			// Echo.channel(`dm.${this.selectedContact.id}`).listen('NewChatMessage', (e) => {
-			//     this.handleIncoming(e.message);
-			// });
+			
+			this.liveListen();
 					
 			
 			axios.get(`/users/${this.$page.props.user.id}/contacts`)
@@ -54,6 +52,15 @@
 				if(this.selectedContact && message.sender == this.selectedContact.id){
 					this.saveNewMessage(message);
 					return;
+				}
+			},
+
+			liveListen(){
+				if(this.selectedContact){
+					Echo.private(`dm.${this.selectedContact.id}`).listen('NewChatMessage', (e) => {
+						console.log(e);
+					    this.handleIncoming(e.message);
+					});
 				}
 			}
 		},

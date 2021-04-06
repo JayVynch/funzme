@@ -13,7 +13,7 @@
                 </span> -->
             </div>
             <div id="chat" class="w-full overflow-y-auto py-4 relative" style="height: 537px;" ref="toolbarChat">
-                <feeds :messages="messages"></feeds>
+                <feeds :messages="messages" :contact="contact"></feeds>
                 <composer @send="sendMessage" @fileReady="persist"></composer>
             </div>
         </div>
@@ -29,10 +29,6 @@
             contact : {
                type : Object,
                default: null
-            },
-
-            guess :{
-                default : null
             },
 
             messages: {
@@ -56,7 +52,7 @@
                     contact_id : this.contact.id,
                     message : text
                 }).then((response) => {
-                    this.$emit('new',response.data); 
+                    this.$emit('new',response.data.message); 
                 })
             },
 

@@ -31,6 +31,6 @@ Broadcast::channel('Deleting',function ($user){
 	return $user;
 });
 
-Broadcast::channel('dm.{id}',function ($user){
-	return $user;
+Broadcast::channel('dm.{id}',function ($user,$id){
+	return (int) $user->id === (int) $id;
 });

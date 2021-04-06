@@ -31,7 +31,7 @@ class ChatController extends Controller
 
     	broadcast(new NewChatMessage($message));
 
-    	return response()->json(['message' => 'message sent']);
+    	return response()->json(['message' => $message ]);
     }
 
     public function getContacts($id){

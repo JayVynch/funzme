@@ -1,8 +1,8 @@
 <template>
 	<ul>
         <li class="clearfix2">
-            <div ref="feed"  class="w-full flex${message.sender == contact.id ? ' justify-start ' : ' justify-end'  }" v-for="message in messages" :key="message.id">
-                <div class="bg-gray-100 rounded px-5 py-2 my-2 mx-2 text-gray-700 relative" style="max-width: 300px;">
+            <div ref="feed" v-for="message in messages" :key="message.id" :class="`w-full flex${message.sender == contact.id ? ' justify-start ' : ' justify-end'  }`">
+                <div class="bg-blue-300 rounded px-5 py-2 my-2 mx-2 text-gray-700 relative" style="max-width: 300px;">
                     <span class="block">{{ message.message }}</span>
                     <span class="block text-xs text-right">{{ ago(message.created_at) }}</span>
                 </div>
