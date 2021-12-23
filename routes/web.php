@@ -82,7 +82,7 @@ Route::post('/notification/{id}',[HomeController::class,'updateNotification']);
 
 Route::get('/users/direct/message',[ChatController::class,'index'])->name('users.chat');
 
-Route::get('/users/{contact_id}/direct/messages',[ChatController::class,'userD irectMessages']);
+Route::get('/users/{contact_id}/direct/messages',[ChatController::class,'userDirectMessages']);
 
 Route::post('/users/{contact_id}/direct/message',[ChatController::class,'store']);
 

@@ -1,5 +1,5 @@
 <template>
-	<ul>
+	<ul class="absolute">
         <li class="clearfix2">
             <div ref="feed" v-for="message in messages" :key="message.id" :class="`w-full flex${message.sender == contact.id ? ' justify-start ' : ' justify-end'  }`">
                 <div class="bg-blue-300 rounded px-5 py-2 my-2 mx-2 text-gray-700 relative" style="max-width: 300px;">
@@ -38,6 +38,14 @@
             },
 
             scrollToBottom(){
+                this.$nextTick ( () => {
+                    const scroller = this.$refs.feed;
+
+                    scroller.scrollTo({
+                        behaviour : 'smooth',
+                        top : scroller.scrollHeight
+                    });
+                })
                 // this.$refs.feed.scrollTop = this.$refs.feed.scrollHeight - this.$refs.feed.clientHeight;
             }
         },

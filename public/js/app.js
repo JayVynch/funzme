@@ -18752,7 +18752,16 @@ __webpack_require__.r(__webpack_exports__);
     ago: function ago(time) {
       return moment__WEBPACK_IMPORTED_MODULE_0___default()(time).fromNow();
     },
-    scrollToBottom: function scrollToBottom() {// this.$refs.feed.scrollTop = this.$refs.feed.scrollHeight - this.$refs.feed.clientHeight;
+    scrollToBottom: function scrollToBottom() {
+      var _this = this;
+
+      this.$nextTick(function () {
+        var scroller = _this.$refs.feed;
+        scroller.scrollTo({
+          behaviour: 'smooth',
+          top: scroller.scrollHeight
+        });
+      }); // this.$refs.feed.scrollTop = this.$refs.feed.scrollHeight - this.$refs.feed.clientHeight;
     }
   },
   computed: {
@@ -23120,7 +23129,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "w-full py-3 px-3 flex items-center justify-between border-t border-gray-300 absolute bottom-0"
+  "class": "w-3/5 py-3 px-3 flex items-center bg-white justify-between border-t border-gray-300 fixed bottom-0"
 };
 
 var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
@@ -23208,8 +23217,8 @@ var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("path", {
   d: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
 })])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
-  "aria-placeholder": "Busca tus amigos o contacta nuevos",
-  placeholder: "Busca tus amigos",
+  "aria-placeholder": "search contact",
+  placeholder: "search contacts",
   "class": "py-2 pl-10 block w-full rounded bg-gray-100 outline-none focus:text-gray-700",
   type: "search",
   name: "search",
@@ -23310,11 +23319,14 @@ var _hoisted_4 = {
 };
 var _hoisted_5 = {
   id: "chat",
-  "class": "w-full overflow-y-auto py-4 relative",
-  style: {
-    "height": "537px"
-  },
+  "class": "w-full",
   ref: "toolbarChat"
+};
+var _hoisted_6 = {
+  "class": "overflow-y-auto flex flex-grow py-4 relative",
+  style: {
+    "height": "27rem"
+  }
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_feeds = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("feeds");
@@ -23329,12 +23341,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* PROPS */
   , ["src", "alt"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.contact.name), 1
   /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <span class=\"connected text-green-500 ml-2\" >\n                    <svg width=\"6\" height=\"6\">\n                        <circle cx=\"3\" cy=\"3\" r=\"3\" fill=\"currentColor\"></circle>\n                    </svg>\n                </span> ")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_feeds, {
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <span class=\"connected text-green-500 ml-2\" >\n                    <svg width=\"6\" height=\"6\">\n                        <circle cx=\"3\" cy=\"3\" r=\"3\" fill=\"currentColor\"></circle>\n                    </svg>\n                </span> ")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_feeds, {
     messages: $props.messages,
     contact: $props.contact
   }, null, 8
   /* PROPS */
-  , ["messages", "contact"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_composer, {
+  , ["messages", "contact"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_composer, {
     onSend: $options.sendMessage,
     onFileReady: $options.persist
   }, null, 8
@@ -23365,32 +23377,35 @@ var _withId = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.withScopeId)("dat
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.pushScopeId)("data-v-785aa732");
 
 var _hoisted_1 = {
-  "class": "clearfix2"
+  "class": "absolute"
 };
 var _hoisted_2 = {
+  "class": "clearfix2"
+};
+var _hoisted_3 = {
   "class": "bg-blue-300 rounded px-5 py-2 my-2 mx-2 text-gray-700 relative",
   style: {
     "max-width": "300px"
   }
 };
-var _hoisted_3 = {
+var _hoisted_4 = {
   "class": "block"
 };
-var _hoisted_4 = {
+var _hoisted_5 = {
   "class": "block text-xs text-right"
 };
 
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)();
 
 var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("ul", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("li", _hoisted_1, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.messages, function (message) {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("ul", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("li", _hoisted_2, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.messages, function (message) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", {
       ref: "feed",
       key: message.id,
       "class": "w-full flex".concat(message.sender == $props.contact.id ? ' justify-start ' : ' justify-end')
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(message.message), 1
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(message.message), 1
     /* TEXT */
-    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.ago(message.created_at)), 1
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.ago(message.created_at)), 1
     /* TEXT */
     )])], 2
     /* CLASS */
@@ -23421,7 +23436,7 @@ var _hoisted_1 = {
 var _hoisted_2 = {
   "class": "grid grid-cols-3 min-w-full border rounded",
   style: {
-    "min-height": "80vh"
+    "min-height": "100%"
   }
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -23470,7 +23485,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h2", {
   "class": "font-semibold text-xl text-gray-800 leading-tight"
-}, " Dashboard ", -1
+}, " User Dashboard ", -1
 /* HOISTED */
 );
 

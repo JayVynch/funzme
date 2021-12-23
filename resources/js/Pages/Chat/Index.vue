@@ -1,7 +1,7 @@
  <template>
  	<app-layout>
 		<div class="w-screen">
-	    	<div class="grid grid-cols-3 min-w-full border rounded" style="min-height: 80vh;">		
+	    	<div class="grid grid-cols-3 min-w-full border rounded" style="min-height: 100%;">		
 				<ContactList :contacts="contacts"  @selected="startCoversationWith" />
 				<Conversation :contact="selectedContact" :messages="messages"  @new="saveNewMessage" />	
 			</div>

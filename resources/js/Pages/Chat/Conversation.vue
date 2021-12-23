@@ -12,8 +12,10 @@
                     </svg>
                 </span> -->
             </div>
-            <div id="chat" class="w-full overflow-y-auto py-4 relative" style="height: 537px;" ref="toolbarChat">
-                <feeds :messages="messages" :contact="contact"></feeds>
+            <div id="chat" class="w-full" ref="toolbarChat">
+                <div class="overflow-y-auto flex flex-grow py-4 relative" style="height: 27rem;">
+                    <feeds :messages="messages" :contact="contact"></feeds>
+                </div>
                 <composer @send="sendMessage" @fileReady="persist"></composer>
             </div>
         </div>
