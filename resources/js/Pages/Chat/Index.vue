@@ -24,11 +24,9 @@
 			} 
 		},
 
-		mounted() {
-			
+		async mounted() {
 			this.liveListen();
 					
-			
 			axios.get(`/users/${this.$page.props.user.id}/contacts`)
 			.then((response) => {
 				this.contacts = response.data;
@@ -43,6 +41,7 @@
 					this.messages 			= response.data;
 					this.selectedContact 	= contact;
 				})
+
 			},
 			saveNewMessage(message){
 				this.messages.push(message);
@@ -57,9 +56,14 @@
 
 			liveListen(){
 				if(this.selectedContact){
-					Echo.private(`dm.${this.selectedContact.id}`).listen('NewChatMessage', (e) => {
+					console.log("live listener");
+					Echo.channel("dm")
+					.listeToWhisper('typing', (e) => {
+				        console.log(e);
+				    })
+					.listen('NewChatMessage', (e) => {
 						console.log(e);
-					    this.handleIncoming(e.message);
+					    this.handleIncoming(e);
 					});
 				}
 			}

@@ -91,8 +91,6 @@ trait Followers {
             'status' => FollowStatus::ACCEPTED,
         ]);
         // $updated = Follow::where('sender_id',$recipient->id)->first();
-
-        dd($updated);
         // Event::fire('friendships.accepted', [$this, $recipient]);
       
         return $updated;

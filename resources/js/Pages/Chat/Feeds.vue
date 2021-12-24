@@ -1,8 +1,8 @@
 <template>
-	<ul class="absolute">
+	<ul class="absolute w-full">
         <li class="clearfix2">
             <div ref="feed" v-for="message in messages" :key="message.id" :class="`w-full flex${message.sender == contact.id ? ' justify-start ' : ' justify-end'  }`">
-                <div class="bg-blue-300 rounded px-5 py-2 my-2 mx-2 text-gray-700 relative" style="max-width: 300px;">
+                <div :class="`rounded-lg${message.sender == contact.id ? ' bg-blue-400 ' : ' bg-green-700' } px-5 py-2 my-2 mx-2 relative text-white`" style="max-width: 300px;">
                     <span class="block">{{ message.message }}</span>
                     <span class="block text-xs text-right">{{ ago(message.created_at) }}</span>
                 </div>
@@ -65,7 +65,11 @@
             messages(messages){
                 this.scrollToBottom();
 
-                if(this.messages.includes('/home')) { this.textType = 1 } else { this.textType = 0 ; }
+                if(this.messages.includes('/home')) {
+                    this.textType = 1 
+                } else { 
+                    this.textType = 0 ; 
+                }
             }
         }
     }

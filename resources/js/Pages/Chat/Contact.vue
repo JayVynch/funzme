@@ -13,7 +13,7 @@
         <ul class="overflow-auto" style="height: 500px;">
             <h2 class="ml-2 mb-2 text-gray-600 text-lg my-2">Chats</h2>
             <li v-for="(contact, index) in contacts.contacts" :key="contact.id" @click="selectedContact(index,contact)" >
-                <a :class="` border-b{index == selected ? ' bg-gray-100' : ' hover:bg-gray-100'  } border-gray-300 px-3 py-2 cursor-pointer flex items-center text-sm focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out`">
+                <a :class="` border-b${index == selected ? ' bg-blue-100' : ' hover:bg-blue-300'  } border-gray-300 px-3 py-2 cursor-pointer flex items-center text-sm shadow-lg focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out`">
                     <img class="h-10 w-10 rounded-full object-cover"
                     :src="contact.profile_photo_url"
                     :alt="contact.username" />
