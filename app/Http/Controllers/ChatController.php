@@ -3,12 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Chat;
-use App\Events\NewChatMessage;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
+use App\Events\NewChatMessage;
 
 class ChatController extends Controller
 {
+    public function __construct(){
+        $this->middleware(['auth:sanctum']);
+    }
+
     public function index(){
 
     	return Inertia::render('Chat/Index',[ 
@@ -29,7 +33,7 @@ class ChatController extends Controller
     		'message' => $request->message
     	]);
 
-    	broadcast(new NewChatMessage($message));
+    	broadcast(new NewChatMessage($message))->toOthers();
 
     	return response()->json(['message' => $message ]);
     }

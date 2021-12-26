@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Support\Facades\Broadcast;
+// use Illuminate\Support\Facades\Broadcast;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,12 +17,17 @@ use Illuminate\Support\Facades\Broadcast;
 //     return (int) $user->id == (int) $id;
 // });
 
+Broadcast::channel('DirectMessaging',function ($user){
+	return $user;
+});
+
 Broadcast::channel('newPosting', function($user){
 	// return ($user->isFriendWith(auth()->user()) || ((int) $user->id === (int) $id));
 	return $user;
 });
 
 Broadcast::channel('newCommenting', function($user){
+	return $user;
 	// return ($user->isFriendWith(auth()->user()) || ((int) $user->id === (int) $id));
 });
 
@@ -30,6 +35,3 @@ Broadcast::channel('Deleting',function ($user){
 	return $user;
 });
 
-Broadcast::channel('dm',function ($user,$id){
-	return auth()->check();
-});

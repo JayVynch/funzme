@@ -24,7 +24,7 @@
 			} 
 		},
 
-		async mounted() {
+		mounted() {
 			this.liveListen();
 					
 			axios.get(`/users/${this.$page.props.user.id}/contacts`)
@@ -57,7 +57,7 @@
 			liveListen(){
 				if(this.selectedContact){
 					console.log("live listener");
-					Echo.channel("dm")
+					Echo.private("Dm")
 					.listeToWhisper('typing', (e) => {
 				        console.log(e);
 				    })
