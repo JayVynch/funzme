@@ -1,4 +1,6 @@
 <template>
+    <Head title="Reset Password" />
+
     <jet-authentication-card>
         <template #logo>
             <jet-authentication-card-logo />
@@ -23,7 +25,7 @@
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <jet-button :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                <jet-button class="bg-pink-900" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                     Reset Password
                 </jet-button>
             </div>
@@ -32,15 +34,18 @@
 </template>
 
 <script>
-    import JetAuthenticationCard from '@/Jetstream/AuthenticationCard'
-    import JetAuthenticationCardLogo from '@/Jetstream/AuthenticationCardLogo'
-    import JetButton from '@/Jetstream/Button'
-    import JetInput from '@/Jetstream/Input'
-    import JetLabel from '@/Jetstream/Label'
-    import JetValidationErrors from '@/Jetstream/ValidationErrors'
+    import { defineComponent } from 'vue';
+    import { Head } from '@inertiajs/inertia-vue3';
+    import JetAuthenticationCard from '@/Jetstream/AuthenticationCard.vue'
+    import JetAuthenticationCardLogo from '@/Jetstream/AuthenticationCardLogo.vue'
+    import JetButton from '@/Jetstream/Button.vue'
+    import JetInput from '@/Jetstream/Input.vue'
+    import JetLabel from '@/Jetstream/Label.vue'
+    import JetValidationErrors from '@/Jetstream/ValidationErrors.vue'
 
-    export default {
+    export default defineComponent({
         components: {
+            Head,
             JetAuthenticationCard,
             JetAuthenticationCardLogo,
             JetButton,
@@ -72,5 +77,5 @@
                 })
             }
         }
-    }
+    })
 </script>

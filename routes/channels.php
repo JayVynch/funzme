@@ -13,12 +13,12 @@
 |
 */
 
-// Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
-//     return (int) $user->id == (int) $id;
-// });
+Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
+    return (int) $user->id == (int) $id;
+});
 
 Broadcast::channel('DirectMessaging',function ($user){
-	return $user;
+	return true;
 });
 
 Broadcast::channel('newPosting', function($user){

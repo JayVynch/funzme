@@ -1,9 +1,11 @@
 <template>
     <div>
+        <Head :title="title" />
+
         <jet-banner />
 
         <div class="min-h-screen bg-gray-100">
-            <nav class="bg-white border-b border-gray-100">
+            <nav class="bg-purple-900 border-b border-gray-100">
                 <!-- Primary Navigation Menu -->
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex justify-between h-16">
@@ -11,24 +13,16 @@
                             <!-- Logo -->
                             <div class="flex-shrink-0 flex items-center">
                                 <inertia-link :href="route('dashboard')">
-                                    <div class="font-bold text-3xl text-blue-800 uppercase">
-                                        Funzme
-                                    </div>
+                                    <jet-application-mark class="block h-9 w-auto fill-current text-pink-900" />
                                 </inertia-link>
+                                <span class="font-bold text-white px-4">Purr</span>
                             </div>
 
-                            <!-- Navigation Links -->
-                           <!--  <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <jet-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
-                                    Dashboard
-                                </jet-nav-link>
-
-                            </div> -->
                             
                             <!-- Search Input -->
                             <user-search></user-search>
 
-                            <inertia-link class="text-blue-300 ml-3 flex items-center justify-center" :href="route('users.chat')">
+                            <inertia-link class="text-white ml-3 flex items-center justify-center" :href="route('users.chat')">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="fill-current w-4 h-4" viewBox="0 0 24 24"><path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.779l5.513-6.812zm9.208-1.264l4.616-3.741v9.348l-4.616-5.607z"/></svg>
                             </inertia-link>
 

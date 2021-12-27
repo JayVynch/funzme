@@ -50,22 +50,16 @@
 			handleIncoming(message){
 				if(this.selectedContact && message.sender == this.selectedContact.id){
 					this.saveNewMessage(message);
-					return;
 				}
 			},
 
 			liveListen(){
-				if(this.selectedContact){
-					console.log("live listener");
-					Echo.private("Dm")
-					.listeToWhisper('typing', (e) => {
-				        console.log(e);
-				    })
-					.listen('NewChatMessage', (e) => {
-						console.log(e);
-					    this.handleIncoming(e);
-					});
-				}
+				
+				Echo.channel("DirectMessaging")
+				.listen('NewChatMessage', (e) => {
+				    this.handleIncoming(e.chat);
+				});
+				
 			}
 		},
 

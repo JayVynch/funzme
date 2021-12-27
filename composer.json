@@ -1,5 +1,5 @@
 {
-    "name": "JayVynch/funzme",
+    "name": "jayvynch/funzme",
     "type": "project",
     "description": "The Laravel Framework.",
     "keywords": [
@@ -18,7 +18,7 @@
         "laravel/jetstream": "^2.2",
         "laravel/sanctum": "^2.6",
         "laravel/tinker": "^2.5",
-        "pusher/pusher-php-server": "~3.0",
+        "pusher/pusher-php-server": "^5.0.3",
         "tightenco/ziggy": "^1.0"
     },
     "require-dev": {

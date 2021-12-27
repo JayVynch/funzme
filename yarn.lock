@@ -848,24 +848,32 @@
   dependencies:
     purgecss "^3.1.3"
 
-"@inertiajs/inertia-vue3@^0.3.5":
-  version "0.3.5"
-  resolved "https://registry.yarnpkg.com/@inertiajs/inertia-vue3/-/inertia-vue3-0.3.5.tgz#149ff1ab9853847ffeb02a70f121cd6fef3b9fd2"
-  integrity sha512-DiFPVrt8ljwQGdjZM6J+PdodPblOdi9sh0+UBCBqhVNWCSKbE+y1NZDwKh669qmI6ICXBq3nc26k4JJfS7I7rQ==
+"@headlessui/vue@^1.4.2":
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/@headlessui/vue/-/vue-1.4.2.tgz#1098f52cb6c583772708a980b3487222ac0ae65e"
+  integrity sha512-+uOaPwHncxHZ6JBwYycu3YxDDrY0v1tcxCtK04H1WGBLBm07dqVi38Q2RB7eY867FUhD0sL6q+Fj69rVn8P0OQ==
 
-"@inertiajs/inertia@^0.8.4":
-  version "0.8.5"
-  resolved "https://registry.yarnpkg.com/@inertiajs/inertia/-/inertia-0.8.5.tgz#622fc22aced645ce795414a3ac54b9722acbe585"
-  integrity sha512-PeYDy/GbZHTZM3XtghNGLXyBubNgc3qjzF43q0nkbyaPN6X6Rai6fojDJyJ1vINJjcNUQ3su0Nn3BsqZlqjJ1g==
+"@inertiajs/inertia-vue3@^0.5.1":
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/@inertiajs/inertia-vue3/-/inertia-vue3-0.5.2.tgz#0853296142bd60440bdc283836ea09718eb2f799"
+  integrity sha512-X9TiXTP4oVQ3bs4/yZz6O3vTTJ1f4W5EimhU9U/uUUfyU3IeWFk6yjNzkCb4D3FllMfKfX+inKIugQV1vb8asA==
+  dependencies:
+    lodash.clonedeep "^4.5.0"
+    lodash.isequal "^4.5.0"
+
+"@inertiajs/inertia@^0.10.0":
+  version "0.10.1"
+  resolved "https://registry.yarnpkg.com/@inertiajs/inertia/-/inertia-0.10.1.tgz#8e415fd506c3ce5dbf8d206e1486ddee911cb46f"
+  integrity sha512-Ntyaerh07QnpIOxC+qsteUZ9OGVWfogpg3fCkSxciaX6AZyYLT6t7IFPkefPShb9LC2G4Woh1hel4t/pMr2vRQ==
   dependencies:
     axios "^0.21.1"
     deepmerge "^4.0.0"
     qs "^6.9.0"
 
-"@inertiajs/progress@^0.2.4":
-  version "0.2.4"
-  resolved "https://registry.yarnpkg.com/@inertiajs/progress/-/progress-0.2.4.tgz#1193c7d8e788dc6cab8bbc00383ed9ed8339df72"
-  integrity sha512-FVlxQjA3qxXoSljbhDWpXKdDth0IxovmI9lNJLbvxzpVir7iL5n9MCX7Sx9X+JcKdTKezCbGnc3CXQ92B38wbA==
+"@inertiajs/progress@^0.2.6":
+  version "0.2.6"
+  resolved "https://registry.yarnpkg.com/@inertiajs/progress/-/progress-0.2.6.tgz#497880c566c762d6b248c1aa2747c9c227c89f8e"
+  integrity sha512-ZhrP9d4QGFoAWN7+I/4lv1BWruAvOfhTKgPoMJd2PUi3aVEgn5wBzbL6heQJgCASrIQvReud5UPum4sxxoWrlA==
   dependencies:
     nprogress "^0.2.0"
 
@@ -890,17 +898,22 @@
     "@nodelib/fs.scandir" "2.1.4"
     fastq "^1.6.0"
 
-"@tailwindcss/forms@^0.2.1":
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/@tailwindcss/forms/-/forms-0.2.1.tgz#3244b185854fae1a7cbe8d2456314d8b2d98cf43"
-  integrity sha512-czfvEdY+J2Ogfd6RUSr/ZSUmDxTujr34M++YLnp2cCPC3oJ4kFvFMaRXA6cEXKw7F1hJuapdjXRjsXIEXGgORg==
+"@tailwindcss/forms@^0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@tailwindcss/forms/-/forms-0.4.0.tgz#a46715e347a32d216a3973eb67473bd29ae3798e"
+  integrity sha512-DeaQBx6EgEeuZPQACvC+mKneJsD8am1uiJugjgQK1+/Vt+Ai0GpFBC2T2fqnUad71WgOxyrZPE6BG1VaI6YqfQ==
   dependencies:
     mini-svg-data-uri "^1.2.3"
 
-"@tailwindcss/typography@^0.3.0":
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/@tailwindcss/typography/-/typography-0.3.1.tgz#253ce580c8e06b6163d9a288edd24f25e1d0dfee"
-  integrity sha512-HyZ+3Eay8SGaPq7kcFoANZLr4EjeXQ19yjjb9fp6B0PHHpvZoe00jdsnpnooMEbx9J5rQ93nxPUG3MQmXVxGMQ==
+"@tailwindcss/typography@^0.5.0":
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/@tailwindcss/typography/-/typography-0.5.0.tgz#47886ec46ac41e1211d24fea05301046d9b30906"
+  integrity sha512-1p/3C6C+JJziS/ghtG8ACYalbA2SyLJY27Pm33cVTlAoY6VQ7zfm2H64cPxUMBkVIlWXTtWHhZcZJPobMRmQAA==
+  dependencies:
+    lodash.castarray "^4.4.0"
+    lodash.isplainobject "^4.0.6"
+    lodash.merge "^4.6.2"
+    lodash.uniq "^4.5.0"
 
 "@types/babel-core@^6.25.6":
   version "6.25.6"
@@ -4164,10 +4177,10 @@ klona@^2.0.4:
   resolved "https://registry.yarnpkg.com/klona/-/klona-2.0.4.tgz#7bb1e3affb0cb8624547ef7e8f6708ea2e39dfc0"
   integrity sha512-ZRbnvdg/NxqzC7L9Uyqzf4psi1OM4Cuc+sJAkQPjO6XkQIJTNbfK2Rsmbw8fx1p2mkZdp2FZYo2+LwXYY/uwIA==
 
-laravel-echo@^1.10.0:
-  version "1.10.0"
-  resolved "https://registry.yarnpkg.com/laravel-echo/-/laravel-echo-1.10.0.tgz#b7a3615baf563fadfe242589ad1e302acc931dad"
-  integrity sha512-qshJkrzl34on1VYd8KqZhLxUdWJFPTL6cGSZ4lVQ4OZMN7FvI9Pt24PrOFL169I8IEDHjHX16jaIAIwCkdnDNA==
+laravel-echo@^1.11.3:
+  version "1.11.3"
+  resolved "https://registry.yarnpkg.com/laravel-echo/-/laravel-echo-1.11.3.tgz#f596f05cb1d83728c955ba762223e5e280a3ebd7"
+  integrity sha512-VNTnnoF8gK29ovxslnrFDt3xgrKiKKW1kTnKKO1A4kYVj4UCKmNO4x2ehRlfg2UTrG/oggwk95p+S9ftQYjXdw==
 
 laravel-mix@^6.0.6:
   version "6.0.13"
@@ -4266,15 +4279,40 @@ lodash.camelcase@^4.3.0:
   resolved "https://registry.yarnpkg.com/lodash.camelcase/-/lodash.camelcase-4.3.0.tgz#b28aa6288a2b9fc651035c7711f65ab6190331a6"
   integrity sha1-soqmKIorn8ZRA1x3EfZathkDMaY=
 
+lodash.castarray@^4.4.0:
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/lodash.castarray/-/lodash.castarray-4.4.0.tgz#c02513515e309daddd4c24c60cfddcf5976d9115"
+  integrity sha1-wCUTUV4wna3dTCTGDP3c9ZdtkRU=
+
+lodash.clonedeep@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/lodash.clonedeep/-/lodash.clonedeep-4.5.0.tgz#e23f3f9c4f8fbdde872529c1071857a086e5ccef"
+  integrity sha1-4j8/nE+Pvd6HJSnBBxhXoIblzO8=
+
 lodash.debounce@^4.0.8:
   version "4.0.8"
   resolved "https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
   integrity sha1-gteb/zCmfEAF/9XiUVMArZyk168=
 
+lodash.isequal@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/lodash.isequal/-/lodash.isequal-4.5.0.tgz#415c4478f2bcc30120c22ce10ed3226f7d3e18e0"
+  integrity sha1-QVxEePK8wwEgwizhDtMib30+GOA=
+
+lodash.isplainobject@^4.0.6:
+  version "4.0.6"
+  resolved "https://registry.yarnpkg.com/lodash.isplainobject/-/lodash.isplainobject-4.0.6.tgz#7c526a52d89b45c45cc690b88163be0497f550cb"
+  integrity sha1-fFJqUtibRcRcxpC4gWO+BJf1UMs=
+
 lodash.memoize@^4.1.2:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/lodash.memoize/-/lodash.memoize-4.1.2.tgz#bcc6c49a42a2840ed997f323eada5ecd182e0bfe"
   integrity sha1-vMbEmkKihA7Zl/Mj6tpezRguC/4=
+
+lodash.merge@^4.6.2:
+  version "4.6.2"
+  resolved "https://registry.yarnpkg.com/lodash.merge/-/lodash.merge-4.6.2.tgz#558aa53b43b661e1925a0afdfa36a9a1085fe57a"
+  integrity sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==
 
 lodash.toarray@^4.4.0:
   version "4.4.0"

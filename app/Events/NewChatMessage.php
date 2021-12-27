@@ -36,10 +36,6 @@ class NewChatMessage implements ShouldBroadcast
         return new Channel('DirectMessaging');
     }
 
-    public function broadcastAs()
-    {
-        return 'DMessage';
-    }
 
     public function broadcastWith(){
         return ['chat' => $this->chat ];
