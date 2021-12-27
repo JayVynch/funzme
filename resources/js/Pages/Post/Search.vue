@@ -11,7 +11,7 @@
           </button>
         </div>
         <div v-if="users.length > 0" class="absolute w-full border mt-28 border-gray-300 bg-white py-2 px-4">
-            <inertia-link :href="route('users.page',user.username)" class="flex px-4 border-t border-gray-300" v-for="(user,i) in users" :key="user.id">
+            <Link :href="route('users.page',user.username)" class="flex px-4 border-t border-gray-300" v-for="(user,i) in users" :key="user.id">
                 <div class="mr-2 flex items-center justify-center">
                     <img class="rounded-full w-8 h-8" :src="user.profile_photo_url" :alt="user.name" />
                 </div>
@@ -21,37 +21,45 @@
                     </div>
                     <div class="text-gray-500 text-sm">@{{ user.username }}</div>
                 </div>
-            </inertia-link>
+            </Link>
         </div>
     </div>
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            keyword: null,
-            users: []
-        };
-    },
-    watch: {
-        keyword(after, before) {
-            this.getResults();
-        }
-    },
-    methods: {
-        getResults() {
-            if(this.keyword != ''){
-                axios.get('/users/search', { params: { keyword: this.keyword } })
-                .then(res => {
-                    console.log(res)
-                    this.users = res.data.users
-                })
-                .catch(error => {});
-            }else{
-                this.users = [];
+    import { defineComponent } from 'vue'
+    import { Head, Link } from '@inertiajs/inertia-vue3';
+
+    export default defineComponent({
+        data() {
+            return {
+                keyword: null,
+                users: []
+            };
+        },
+        watch: {
+            keyword(after, before) {
+                this.getResults();
             }
+        },
+        methods: {
+            getResults() {
+                if(this.keyword != ''){
+                    axios.get('/users/search', { params: { keyword: this.keyword } })
+                    .then(res => {
+                        console.log(res)
+                        this.users = res.data.users
+                    })
+                    .catch(error => {});
+                }else{
+                    this.users = [];
+                }
+            }
+        },
+
+        components:{
+            Head,
+            Link
         }
-    }
-}
+    })
 </script>

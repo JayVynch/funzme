@@ -6,10 +6,10 @@
 				    <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
 
 				    	<div class="text-2xl flex flex-col w-full justify-center items-center">
-				    		<inertia-link :href="route('dashboard')" class="flex w-full">
+				    		<Link :href="route('dashboard')" class="flex w-full">
 				    			<svg xmlns="http://www.w3.org/2000/svg" class="fill-current w-8 h-8 text-blue-800" viewBox="0 0 24 24"><path d="M0 12l9-8v6h15v4h-15v6z"/></svg>
 				    			<span class="uppercase pl-3 text-blue-800 font-bold">Funz</span>
-				    		</inertia-link>
+				    		</Link>
 							
 							<!-- simple profile details of user  -->
 							<div class="top h-64 w-full bg-blue-300 overflow-hidden relative" >
@@ -68,7 +68,7 @@
 						            
 						                    <likes :likings="post.isLiked" :postId="post.id" :countedLikes="post.likes_count" :detect="'post'"></likes>
 						        
-						                    <inertia-link class="flex space-x-2 inline-flex items-center" :href="route('post.comments',post.id)">
+						                    <Link class="flex space-x-2 inline-flex items-center" :href="route('post.comments',post.id)">
 						                        <svg viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
 						                            <g>
 						                                <path
@@ -77,7 +77,7 @@
 						                            </g>
 						                        </svg>
 						                        <span class="text-sm">{{ post.comments_count }}</span>
-						                    </inertia-link>
+						                    </Link>
 						                </div>
 						            </div>
 						        </div>
@@ -94,6 +94,8 @@
 </template>
 
 <script>
+	import { defineComponent } from 'vue'
+    import { Head, Link } from '@inertiajs/inertia-vue3';
 	import AppLayout from '@/Layouts/AppLayout'
 	import moment from 'moment'
     import Likes from './Like'
@@ -101,7 +103,7 @@
     import Follow from './Follow'
     
 
-	export default{
+	export default defineComponent({
 		name : 'Profile',
 
 		components : {
@@ -109,6 +111,8 @@
 			Likes,
 			PostComment,
 			Follow,
+			Head,
+			Link
 		},
 
 		props : ['tweets','profiler'],
@@ -127,5 +131,5 @@
         		return this.profiler.id == this.$page.props.user.id ? 'hidden' : 'flex'
         	}
         }        
-    }
+    })
 </script>

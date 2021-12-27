@@ -4,17 +4,17 @@
 
         <jet-banner />
 
-        <div class="min-h-screen bg-gray-100">
-            <nav class="bg-purple-900 border-b border-gray-100">
+        <div class="min-h-screen bg-pink-50">
+            <nav class="bg-purple-900 border-b border-purple-100">
                 <!-- Primary Navigation Menu -->
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex justify-between h-16">
                         <div class="flex justify-around w-full">
                             <!-- Logo -->
                             <div class="flex-shrink-0 flex items-center">
-                                <inertia-link :href="route('dashboard')">
+                                <Link :href="route('dashboard')">
                                     <jet-application-mark class="block h-9 w-auto fill-current text-pink-900" />
-                                </inertia-link>
+                                </Link>
                                 <span class="font-bold text-white px-4">Purr</span>
                             </div>
 
@@ -22,9 +22,11 @@
                             <!-- Search Input -->
                             <user-search></user-search>
 
-                            <inertia-link class="text-white ml-3 flex items-center justify-center" :href="route('users.chat')">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="fill-current w-4 h-4" viewBox="0 0 24 24"><path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.779l5.513-6.812zm9.208-1.264l4.616-3.741v9.348l-4.616-5.607z"/></svg>
-                            </inertia-link>
+                            <Link class="text-white ml-3 flex items-center justify-center" :href="route('users.chat')">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                                </svg>
+                            </Link>
 
                             <user-notifications></user-notifications>
                         </div>
@@ -236,6 +238,7 @@
 </template>
 
 <script>
+    import { defineComponent } from 'vue'
     import JetApplicationMark from '@/Jetstream/ApplicationMark'
     import JetBanner from '@/Jetstream/Banner'
     import JetDropdown from '@/Jetstream/Dropdown'
@@ -244,8 +247,13 @@
     import JetResponsiveNavLink from '@/Jetstream/ResponsiveNavLink'
     import UserSearch from '@/Pages/Post/Search'
     import UserNotifications from '@/Pages/Post/Notifications'
+    import { Head, Link } from '@inertiajs/inertia-vue3';
 
-    export default {
+    export default defineComponent({
+       props: {
+            title: String,
+        },
+
         components: {
             JetApplicationMark,
             JetBanner,
@@ -254,7 +262,9 @@
             JetNavLink,
             JetResponsiveNavLink,
             UserSearch,
-            UserNotifications
+            UserNotifications,
+            Head, 
+            Link
         },
 
         data() {
@@ -276,5 +286,5 @@
                 this.$inertia.post(route('logout'));
             },
         }
-    }
+    })
 </script>

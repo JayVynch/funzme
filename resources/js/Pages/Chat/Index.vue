@@ -10,11 +10,12 @@
 </template>
 
 <script>
+	import { defineComponent } from 'vue'
 	import AppLayout from '@/Layouts/AppLayout'
 	import Conversation from './Conversation';
 	import ContactList from './Contact';
  
-	export default {
+	export default defineComponent({
 
 		data (){
 			return {
@@ -64,5 +65,5 @@
 		},
 
 		components : { Conversation, ContactList, AppLayout }
-	}
+	})
 </script>

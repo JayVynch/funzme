@@ -15,17 +15,17 @@
 		            	<div v-if="notifications.length < 1" class="flex justify-center items-center px-4 py-3 border-b hover:bg-gray-100 -mx-2 text-gray-600 text-sm text-center w-full">
 		            		No Notifications yet
 		            	</div>
-		                <inertia-link v-if="notifications.length > 0" v-for="(notification, i ) in notifications" :key="notification.id" :href="notification.data.link" class="flex items-center px-4 py-3 border-b hover:bg-gray-100 -mx-2" @click="markAsRead(notification.id)">
+		                <Link v-if="notifications.length > 0" v-for="(notification, i ) in notifications" :key="notification.id" :href="notification.data.link" class="flex items-center px-4 py-3 border-b hover:bg-gray-100 -mx-2" @click="markAsRead(notification.id)">
 		                    <img class="h-8 w-8 rounded-full object-cover mx-1" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80" alt="avatar">
 		                    <div class="text-gray-600 text-sm w-full mx-2 flex flex-col">
 		                        <div class="font-bold w-full">{{ notification.data.message }}
 		                        </div>
 		                        <div class="text-xs w-full flex justify-end">{{ ago(notification.created_at)  }}</div>
 		                    </div>
-		                </inertia-link>
+		                </Link>
 		                
 		            </div>
-		            <inertia-link v-if="notifications.length > 10" :href="route('dashboard')" class="block bg-gray-800 text-white text-center font-bold py-2">See all notifications</inertia-link>
+		            <Link v-if="notifications.length > 10" :href="route('dashboard')" class="block bg-gray-800 text-white text-center font-bold py-2">See all notifications</Link>
 		        </div>
             </template>
         </notification-dropdown>
@@ -33,13 +33,17 @@
 </template>
 
 <script>
+	import { defineComponent } from 'vue'
+    import { Head, Link } from '@inertiajs/inertia-vue3';
 	import NotificationDropdown from '@/Jetstream/Dropdown'
 	import moment from 'moment'
 
-	export default {
+	export default defineComponent({
 
 		components : {
-			NotificationDropdown
+			NotificationDropdown,
+			Head,
+			Link
 		},
 
 		data(){
@@ -98,5 +102,5 @@
             	})
             },
         }
-	}
+	})
 </script>

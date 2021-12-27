@@ -6,23 +6,23 @@
 				    <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
 
 				    	<div class="text-2xl flex flex-col w-full justify-center items-center">
-				    		<inertia-link :href="route('dashboard')" class="flex w-full">
+				    		<Link :href="route('dashboard')" class="flex w-full">
 				    			<svg xmlns="http://www.w3.org/2000/svg" class="fill-current w-8 h-8 text-blue-800" viewBox="0 0 24 24"><path d="M0 12l9-8v6h15v4h-15v6z"/></svg>
 				    			<span class="uppercase pl-3 text-blue-800 font-bold">Post</span>
-				    		</inertia-link>
+				    		</Link>
 							<section class="py-6 w-2/3">
 
 						        <div  class="min-h-screen bg-white py-6 flex flex-col">
 						            <div class="w-full max-w-xl border-t border-gray-300 py-3 px-5 my-3 relative">
 						                <div class="flex">
-						                    <inertia-link :href="route('users.page',$page.props.postWithComments.user.username)" class="mr-2">
+						                    <Link :href="route('users.page',$page.props.postWithComments.user.username)" class="mr-2">
 						                        <img class="rounded-full w-16 h-16" :src="$page.props.postWithComments.user.profile_photo_url" :alt="$page.props.user.name" />
-						                    </inertia-link>
+						                    </Link>
 						                    <div>
 						                        <div class="flex space-x-1">
-						                            <inertia-link :href="route('users.page',$page.props.postWithComments.user.username)" class="font-bold">{{ $page.props.postWithComments.user.name }}</inertia-link>
+						                            <Link :href="route('users.page',$page.props.postWithComments.user.username)" class="font-bold">{{ $page.props.postWithComments.user.name }}</Link>
 						                        </div>
-						                        <inertia-link :href="route('users.page',$page.props.postWithComments.user.username)" class="text-gray-500 text-sm">@{{ $page.props.postWithComments.user.username }}</inertia-link>
+						                        <Link :href="route('users.page',$page.props.postWithComments.user.username)" class="text-gray-500 text-sm">@{{ $page.props.postWithComments.user.username }}</Link>
 						                    </div>
 						                </div>
 
@@ -221,18 +221,22 @@
 </template>
 
 <script>
+	import { defineComponent } from 'vue'
+    import { Head, Link } from '@inertiajs/inertia-vue3';
 	import AppLayout from '@/Layouts/AppLayout'
 	import moment from 'moment'
 	import Likes from './Like'
 	import CommentImageModal from '@/Pages/Post/PostImage'
 
-	export default{
+	export default defineComponent({
 		name : 'Comments',
 
 		components : {
 			AppLayout,
 			Likes,
-			CommentImageModal
+			CommentImageModal,
+			Head,
+			Link
 		},
 
 		props : {
@@ -337,7 +341,5 @@
                 return moment(this.$page.props.postWithComments.created_at).fromNow();
             },
         }
-
-
-	}
+	})
 </script>

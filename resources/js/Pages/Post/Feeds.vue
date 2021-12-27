@@ -4,14 +4,14 @@
         <div  class="min-h-screen bg-white py-6 flex flex-col items-center">
             <div class="w-full max-w-xl border border-gray-300 rounded-2xl py-3 px-5 my-3" v-for="(post,i) in posts" :key="post.id">
                 <div class="flex">
-                    <inertia-link :href="route('users.page',post.user.username)" class="mr-2">
+                    <Link :href="route('users.page',post.user.username)" class="mr-2">
                         <img class="rounded-full w-16 h-16" :src="post.user.profile_photo_url" :alt="post.user.name" />
-                    </inertia-link>
+                    </Link>
                     <div>
                         <div class="flex space-x-1">
-                            <inertia-link :href="route('users.page',post.user.username)" class="font-bold">{{ post.user.name }}</inertia-link>
+                            <Link :href="route('users.page',post.user.username)" class="font-bold">{{ post.user.name }}</Link>
                         </div>
-                        <inertia-link :href="route('users.page',post.user.username)" class="text-gray-500 text-sm">@{{ post.user.username }}</inertia-link>
+                        <Link :href="route('users.page',post.user.username)" class="text-gray-500 text-sm">@{{ post.user.username }}</Link>
                     </div>
                 </div>
 
@@ -30,7 +30,7 @@
             
                     <likes :likings="post.isLiked" :postId="post.id" :countedLikes="post.likes_count" :detect="'post'"></likes>
         
-                    <inertia-link class="flex space-x-2 inline-flex items-center" :href="route('post.comments',post.id)">
+                    <Link class="flex space-x-2 inline-flex items-center" :href="route('post.comments',post.id)">
                         <svg viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
                             <g>
                                 <path
@@ -39,7 +39,7 @@
                             </g>
                         </svg>
                         <span class="text-sm">{{ post.comments_count }}</span>
-                    </inertia-link>
+                    </Link>
                 </div>
             </div>
         </div>
@@ -47,16 +47,20 @@
 </template>
 
 <script>
+    import { defineComponent } from 'vue'
+    import { Head, Link } from '@inertiajs/inertia-vue3';
     import moment from 'moment';
     import Likes from './Like'
     import PostComment from './Comment'
     
-	export default{
+	export default defineComponent({
         name : 'Feeds',
 
         components : {
             Likes,
             PostComment,
+            Head,
+            Link
         },
 
         mounted(){
@@ -83,5 +87,5 @@
                 return moment(time).fromNow();
             },
         }
-	}
+	})
 </script>
