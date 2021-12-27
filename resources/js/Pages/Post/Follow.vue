@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<button class="inline-flex items-center px-2 py-2 bg-transparent border border-gray-300 rounded-2xl font-semibold text-xs uppercase tracking-widest focus:outline-none transition ease-in-out duration-150 font-bold hover:bg-white hover:text-blue-300" @click="getFollow">
+		<button class="inline-flex items-center px-2 py-2 bg-transparent border border-gray-300 rounded-2xl font-semibold text-xs uppercase tracking-widest focus:outline-none transition ease-in-out duration-150 font-bold hover:bg-white hover:text-pink-700" @click="getFollow">
 			<span class="mr-2"></span>{{ followOption }}
 			<span class="ml-2"></span>
 		</button>
