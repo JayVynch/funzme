@@ -44,7 +44,7 @@ Route::post('/posts/{id}/like' , [PostController::class, 'addLike'])->name('post
 
 Route::delete('/posts/{id}/like', [PostController::class, 'unLike']);
 
-Route::post('/comments/{id}/like' , [CommentController::class, 'addLike'])->name('post.addlike');
+Route::post('/comments/{id}/like' , [CommentController::class, 'addLike'])->name('comment.addlike');
 
 Route::delete('/comments/{id}/like', [CommentController::class, 'unLike']);
 
