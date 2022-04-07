@@ -27,11 +27,11 @@ class PostController extends Controller
     public function index(){
 
         $tweets = Posts::with('user')->where(function($query) {
-                            return $query->where('user_id', auth()->id())
-                            ->orWhereIn('user_id',auth()->user()->getFriends()->pluck('id'));
-                        })            
-                        ->latest()
-                        ->get();
+            return $query->where('user_id', auth()->id())
+            ->orWhereIn('user_id',auth()->user()->getFriends()->pluck('id'));
+        })            
+        ->latest()
+        ->get();
         return response()->json(['data' => $tweets]);
     }
 
