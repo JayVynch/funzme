@@ -65,6 +65,7 @@
                             </PopoverPanel>
                         </transition>
                     </Popover>
+
                     <main>
                         <div class="pt-10 bg-purple-900 sm:pt-16 lg:pt-8 lg:pb-14 lg:overflow-hidden">
                             <div class="mx-auto max-w-7xl lg:px-8">
@@ -74,13 +75,22 @@
                                           
                                             <h1 class="mt-4 tracking-tight font-extrabold text-white sm:mt-5 sm:text-6xl lg:mt-6 xl:text-6xl">
                                                 <span class="block text-6xl">Purr</span>
-                                                <span class="text-4xl pb-3 block bg-clip-text text-transparent bg-gradient-to-r from-teal-200 to-cyan-400 sm:pb-5">A demo App - Vynch&trade; </span>
+                                                <span class="text-4xl pb-3 block bg-clip-text text-transparent bg-gradient-to-r from-teal-200 to-cyan-400 sm:pb-5">...let&apos;s shake purrs and connect </span>
                                             </h1>
                                             <p class="text-base text-gray-300 sm:text-xl lg:text-lg xl:text-xl">
                                                 This demo allows for creating post, commenting on post, liking a post, search and follow another user, real time chat, with notification.
                                             </p>
+
                                             <div class="mt-10 sm:mt-12">
-                                                &nbsp;
+                                                <div class="flex items-center space-x-6 md:hidden">
+                                                    <Link :href="route('login')" class="text-base font-medium text-white hover:text-gray-300 ml-0">
+                                                        Log in
+                                                    </Link>
+
+                                                    <Link v-if="canRegister" :href="route('register')" class="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-pink-600 hover:bg-pink-700">
+                                                        Register
+                                                    </Link>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -100,6 +110,24 @@
                         <div class="relative bg-gray-50 pt-16 sm:pt-24 lg:pt-32">
                             <div class="mx-auto max-w-md px-4 text-center sm:px-6 sm:max-w-3xl lg:px-8 lg:max-w-7xl">
                                 <div>
+                                    <h2 class="text-base font-semibold tracking-wider text-pink-600 uppercase">vynch</h2>
+                                    <p class="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl">
+                                        BIO
+                                    </p>
+                                    <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500">
+                                        I am Jacob George, A Fullstack PHP Developer. Major in Backend. I use PHP Frameworks like Laravel, Symfony for backend web and api development. For Styling i use Tailwindcss(preference), Bootstrap. For client side I have experience with Javascript and use javascript frameworks like Vuejs, AlpineJs, InertiaJs, Laravel Livewire. I have experience with DevOpt. Server set-up (AWS, Linode, Digital Ocean). Lastly Websockets for real time effects
+                                    </p>
+                                    <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500">
+                                        This App was built with Laravel + Vuejs + Laravel Websocket + Laravel Jetstream + TailwindCSS. Hosted Using Ploi for provisioning on a Linode Server
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Feature section with screenshot -->
+                        <div class="relative bg-gray-50 pt-16 sm:pt-24 lg:pt-32">
+                            <div class="mx-auto max-w-md px-4 text-center sm:px-6 sm:max-w-3xl lg:px-8 lg:max-w-7xl">
+                                <div>
                                     <h2 class="text-base font-semibold tracking-wider text-pink-600 uppercase">demo</h2>
                                     <p class="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl">
                                         How To Install
@@ -107,7 +135,7 @@
                                     <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500">
                                         <ul class="text-base font-semibold tracking-wider text-gray-600 ">
                                             <li>
-                                                Download from Repo
+                                                Clone or Fork Repo
                                             </li>
                                             <li>
                                                 Run Composer update or Dump autoload
