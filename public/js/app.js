@@ -27504,7 +27504,7 @@ var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(
 
 var _hoisted_30 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", {
   "class": "text-base text-gray-300 sm:text-xl lg:text-lg xl:text-xl"
-}, " This demo allows for creating post, commenting on post, liking a post, search and follow another user, real time chat, with notification. ", -1
+}, " A Vynchie's Project ", -1
 /* HOISTED */
 );
 
@@ -27535,40 +27535,38 @@ var _hoisted_35 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(
 
 var _hoisted_36 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"relative bg-gray-50 pt-16 sm:pt-24 lg:pt-32\"><div class=\"mx-auto max-w-md px-4 text-center sm:px-6 sm:max-w-3xl lg:px-8 lg:max-w-7xl\"><div><h2 class=\"text-base font-semibold tracking-wider text-pink-600 uppercase\">vynch</h2><p class=\"mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl\"> BIO </p><p class=\"mt-5 max-w-prose mx-auto text-xl text-gray-500\"> I am Jacob George, A Fullstack PHP Developer. Major in Backend. I use PHP Frameworks like Laravel, Symfony for backend web and api development. For Styling i use Tailwindcss(preference), Bootstrap. For client side I have experience with Javascript and use javascript frameworks like Vuejs, AlpineJs, InertiaJs, Laravel Livewire. I have experience with DevOpt. Server set-up (AWS, Linode, Digital Ocean). Lastly Websockets for real time effects </p><p class=\"mt-5 max-w-prose mx-auto text-xl text-gray-500\"> This App was built with Laravel + Vuejs + Laravel Websocket + Laravel Jetstream + TailwindCSS. Hosted Using Ploi for provisioning on a Linode Server </p></div></div></div>", 1);
 
-var _hoisted_37 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"relative bg-gray-50 pt-16 sm:pt-24 lg:pt-32\"><div class=\"mx-auto max-w-md px-4 text-center sm:px-6 sm:max-w-3xl lg:px-8 lg:max-w-7xl\"><div><h2 class=\"text-base font-semibold tracking-wider text-pink-600 uppercase\">demo</h2><p class=\"mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl\"> How To Install </p><p class=\"mt-5 max-w-prose mx-auto text-xl text-gray-500\"><ul class=\"text-base font-semibold tracking-wider text-gray-600 \"><li> Clone or Fork Repo </li><li> Run Composer update or Dump autoload </li><li> Setup Your database </li><li> Run Migration </li><li> Run php artisan serve </li><li> Run npm run dev or watch / yarn run dev(watch) </li><li> Run php artisan websockets:serve </li><li> Then Xplore </li></ul></p></div></div></div>", 1);
-
-var _hoisted_38 = {
+var _hoisted_37 = {
   "class": "bg-gray-50",
   "aria-labelledby": "footerHeading"
 };
 
-var _hoisted_39 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h2", {
+var _hoisted_38 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h2", {
   id: "footerHeading",
   "class": "sr-only"
 }, "Footer", -1
 /* HOISTED */
 );
 
-var _hoisted_40 = {
+var _hoisted_39 = {
   "class": "max-w-md mx-auto pt-12 px-4 sm:max-w-7xl sm:px-6 lg:pt-16 lg:px-8"
 };
-var _hoisted_41 = {
+var _hoisted_40 = {
   "class": "xl:grid xl:grid-cols-3 xl:gap-8"
 };
-var _hoisted_42 = {
+var _hoisted_41 = {
   "class": "space-y-8 xl:col-span-1"
 };
-var _hoisted_43 = {
+var _hoisted_42 = {
   "class": "bg-purple-900 rounded-full px4 py-2 w-20 flex justify-center items-center"
 };
 
-var _hoisted_44 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", {
+var _hoisted_43 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", {
   "class": "text-gray-500 text-base"
 }, " Follow me on instagram, facebook, linkedIn, twitter. Hit me up for jobs or just to say hi ", -1
 /* HOISTED */
 );
 
-var _hoisted_45 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+var _hoisted_44 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
   "class": "flex space-x-6"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
   href: "https://www.facebook.com/tammyvynch",
@@ -27628,7 +27626,7 @@ var _hoisted_45 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(
 /* HOISTED */
 );
 
-var _hoisted_46 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+var _hoisted_45 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
   "class": "mt-12 border-t border-gray-200 py-8"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", {
   "class": "text-base text-gray-400 xl:text-center"
@@ -27805,7 +27803,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   }, 8
   /* PROPS */
-  , ["href"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])])]), _hoisted_35])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Feature section with screenshot "), _hoisted_36, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Feature section with screenshot "), _hoisted_37]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("footer", _hoisted_38, [_hoisted_39, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_40, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_41, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_42, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_43, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_authentication_card_logo)]), _hoisted_44, _hoisted_45])]), _hoisted_46])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])]);
+  , ["href"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])])]), _hoisted_35])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Feature section with screenshot "), _hoisted_36, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Feature section with screenshot "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"relative bg-gray-50 pt-16 sm:pt-24 lg:pt-32\">\n                            <div class=\"mx-auto max-w-md px-4 text-center sm:px-6 sm:max-w-3xl lg:px-8 lg:max-w-7xl\">\n                                <div>\n                                    <h2 class=\"text-base font-semibold tracking-wider text-pink-600 uppercase\">demo</h2>\n                                    <p class=\"mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl\">\n                                        How To Install\n                                    </p>\n                                    <p class=\"mt-5 max-w-prose mx-auto text-xl text-gray-500\">\n                                        <ul class=\"text-base font-semibold tracking-wider text-gray-600 \">\n                                            <li>\n                                                Clone or Fork Repo\n                                            </li>\n                                            <li>\n                                                Run Composer update or Dump autoload\n                                            </li>\n                                            <li>\n                                                Setup Your database\n                                            </li>\n                                            <li>\n                                                Run Migration\n                                            </li>\n                                            <li>\n                                                Run php artisan serve\n                                            </li>\n                                            <li>\n                                                Run npm run dev or watch / yarn run dev(watch)\n                                            </li>\n                                            <li>\n                                                Run php artisan websockets:serve\n                                            </li>\n                                            <li>\n                                                Then Xplore\n                                            </li>\n                                        </ul>\n                                    </p>\n                                </div>\n                            </div>\n                        </div> ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("footer", _hoisted_37, [_hoisted_38, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_39, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_40, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_41, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_42, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_authentication_card_logo)]), _hoisted_43, _hoisted_44])]), _hoisted_45])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])]);
 }
 
 /***/ }),
