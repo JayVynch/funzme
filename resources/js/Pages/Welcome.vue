@@ -78,7 +78,7 @@
                                                 <span class="text-4xl pb-3 block bg-clip-text text-transparent bg-gradient-to-r from-teal-200 to-cyan-400 sm:pb-5">...let&apos;s shake purrs and connect </span>
                                             </h1>
                                             <p class="text-base text-gray-300 sm:text-xl lg:text-lg xl:text-xl">
-                                                This demo allows for creating post, commenting on post, liking a post, search and follow another user, real time chat, with notification.
+                                                A Vynchie&apos;s Project
                                             </p>
 
                                             <div class="mt-10 sm:mt-12">
@@ -125,7 +125,7 @@
                         </div>
 
                         <!-- Feature section with screenshot -->
-                        <div class="relative bg-gray-50 pt-16 sm:pt-24 lg:pt-32">
+                        <!-- <div class="relative bg-gray-50 pt-16 sm:pt-24 lg:pt-32">
                             <div class="mx-auto max-w-md px-4 text-center sm:px-6 sm:max-w-3xl lg:px-8 lg:max-w-7xl">
                                 <div>
                                     <h2 class="text-base font-semibold tracking-wider text-pink-600 uppercase">demo</h2>
@@ -162,7 +162,7 @@
                                     </p>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </main>
                     <footer class="bg-gray-50" aria-labelledby="footerHeading">
                         <h2 id="footerHeading" class="sr-only">Footer</h2>
