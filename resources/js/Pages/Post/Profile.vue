@@ -1,10 +1,9 @@
 <template>
 	<app-layout>
-		<div class="py-12">
+		<div class="md:py-12">
             <div class="w-full lg:max-w-7xl mx-auto sm:px-6 lg:px-8 ">
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-				    <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
-
+				    <div class="md:p-6 px-2 md:px-20 bg-white border-b border-gray-200">
 				    	<div class="text-2xl flex flex-col w-full justify-center items-center">
 							
 							<!-- simple profile details of user  -->
@@ -34,7 +33,7 @@
 							</div>
 
 							<!-- timeline of user -->
-							<section class="py-6 w-2/3">
+							<section class="py-6 px-4 w-full md:w-2/3">
 						        <div  class="min-h-screen bg-white py-6 flex flex-col items-center">
 						            <div class="w-full max-w-xl border border-gray-300 rounded-2xl py-3 px-5 my-3" v-for="(post,i) in tweets" :key="post.id">
 						                <div class="flex">
@@ -45,7 +44,7 @@
 						                        <div class="flex space-x-1">
 						                            <span class="font-bold">{{ post.user.name }}</span>
 						                        </div>
-						                        <div class="text-gray-500 text-sm">@{{ post.user.username }}</div>
+						                        <div class="text-gray-500 text-xs">@{{ post.user.username }}</div>
 						                    </div>
 						                </div>
 
@@ -78,8 +77,6 @@
 						            </div>
 						        </div>
 						    </section>
-
-						    
 						</div>
 					</div>
 				</div>
