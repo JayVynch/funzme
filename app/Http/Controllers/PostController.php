@@ -18,8 +18,7 @@ class PostController extends Controller
      * UserController constructor.
      * @param $pathToProfileImage
      */
-    public function __construct() // 'message'   => $this->notification->.' Accepted your  Link Request ',
-            // 'link' => '/follow'
+    public function __construct()
     {
         $this->middleware(['auth:sanctum']);
     }

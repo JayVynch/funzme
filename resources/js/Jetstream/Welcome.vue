@@ -1,9 +1,9 @@
 <template>
     <div>
-        <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
+        <div class="py-6 px-2 md:px-20 bg-white border-b border-gray-200">
 
             <div class="mt-8 text-2xl flex flex-col w-full items-center">
-                <form @submit.prevent="submit" class="w-2/3">
+                <form @submit.prevent="submit" class="px-4 w-full md:w-2/3">
                     <textarea class="w-full rounded-lg" v-model="form.post" placeholder="what&apos;s on your mind..."></textarea>
                     <input ref="post_upload"  accept="image/*" @change="photoPreview" type="file" class="hidden" />
                     <div class="flex justify-between">
@@ -37,6 +37,9 @@
                             <div class="pt-3 w-full flex justify-end ml-auto">
                                 <image-post-button @click="setImageForPost">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="fill-current w-4 h-4" viewBox="0 0 24 24"><path d="M24 0l-6 22-8.129-7.239 7.802-8.234-10.458 7.227-7.215-1.754 24-12zm-15 16.668v7.332l3.258-4.431-3.258-2.901z"/></svg>
+                                </image-post-button>
+                                <image-post-button @click="closeModal">
+                                    cancel
                                 </image-post-button>
                             </div>
                         </template>
@@ -116,6 +119,10 @@
 
             openModal(){
                 this.showable = true;
+            },
+
+            closeModal(){
+                this.showable = false;
             },
 
             openFile(){
