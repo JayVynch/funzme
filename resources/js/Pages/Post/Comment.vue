@@ -47,38 +47,6 @@
 						            </div>
 						            
 						            <!-- display comments -->
-						           <!--  <div class="w-full max-w-xl border border-gray-300 rounded-2xl py-3 px-4 md:px-5 my-3">
-						            	<div v-for="(comment,i) in comments" :key="comment.id" class="border-gray-300 mt-4 py-3">
-						                	<div class="flex">
-							                    <div class="mr-2">
-							                        <img class="rounded-full w-16 h-16" :src="comment.commenter.profile_photo_url" :alt="comment.commenter.name" />
-							                    </div>
-							                    <div>
-							                        <div class="flex space-x-1">
-							                            <span class="font-bold">{{ comment.commenter.name }}</span>
-							                        </div>
-							                        <div class="text-gray-500 text-sm">@{{ comment.commenter.username }}</div>
-							                    </div>
-							                </div>
-
-							                <div class="py-3">
-							                    <figure v-if="comment.comment_upload">
-							                        <img class="w-full h-56 object-cover" :src="comment.commentUrl">
-							                    </figure>
-							                    <div v-if="comment.reply" v-html="comment.reply" class="text-lg"></div>
-							                    <div class="flex">
-							                        <p class="text-gray-500 pt-1 text-xs">{{ commentTime(comment.created_at) }}</p>
-							                        
-							                    </div>
-
-							                    <div class="flex space-x-5 pt-3 text-gray-500 border-t border-gray-300"> -->
-						            				<!-- like button -->
-								                   <!--  <likes :likings="comment.isLiked" :postId="comment.id" :countedLikes="comment.likes_count" :detect="'comment'"></likes>
-								                </div>
-							                </div>
-						                </div>
-						            </div>
- -->
 						            <div class="flow-root w-full max-w-xl py-3 px-4 md:px-5 my-3">
 						            	<ul role="list" class="-mb-8">
 									      	<li v-for="(comment,i) in comments" :key="comment.id">
