@@ -23,6 +23,6 @@
         @env ('local')
             <script src="http://localhost:3000/browser-sync/browser-sync-client.js"></script>
         @endenv
-        <script> window.APP_DEBUG = {{ env('APP_ENV') ? 'true' : 'false' }}; </script>
+        <script> window.APP_DEBUG = {{ env('APP_ENV') == 'local' ? 'true' : 'false' }}; </script>
     </body>
 </html>
