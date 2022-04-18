@@ -23,7 +23,9 @@
                         </template>
                         <template #content>
                             <div class="my-2 flex justify-center items-center" v-show="! preview" >
-                                <img src="/storage/static/user.png" :alt="$page.props.user.name" class="h-48 w-48 object-cover cursor-pointer" @click="openFile">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-blue-400 h-24 w-24" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" @click="openFile">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                </svg>
                             </div>
                             <div class="my-2 flex justify-center items-center" v-show="preview">
                                 <span class="block rounded-full w-48 h-48 cursor-pointer"
@@ -35,7 +37,7 @@
                             </div>
 
                             <div class="pt-3 w-full flex justify-end ml-auto">
-                                <image-post-button @click="setImageForPost">
+                                <image-post-button @click="setImageForPost" class="mx-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="fill-current w-4 h-4" viewBox="0 0 24 24"><path d="M24 0l-6 22-8.129-7.239 7.802-8.234-10.458 7.227-7.215-1.754 24-12zm-15 16.668v7.332l3.258-4.431-3.258-2.901z"/></svg>
                                 </image-post-button>
                                 <image-post-button @click="closeModal">
