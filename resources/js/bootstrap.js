@@ -20,12 +20,13 @@ import Echo from 'laravel-echo';
 
 window.Pusher = require('pusher-js');
 
+//2053 FOR cloudflare proxy
 window.Echo = new Echo({
     broadcaster: 'pusher',
     key: process.env.MIX_PUSHER_APP_KEY,
     wsHost: window.location.hostname,
-    wsPort: window.APP_DEBUG ? 6001 : 2053,
-    wssPort: window.APP_DEBUG ? 6001 : 2053,
+    wsPort: window.APP_DEBUG ? 6001 : 6002,
+    wssPort: window.APP_DEBUG ? 6001 : 6002,
     forceTLS: !window.APP_DEBUG,
     disableStats: true,
     enabledTransports: ['ws', 'wss'],
