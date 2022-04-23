@@ -23,11 +23,9 @@ window.Pusher = require('pusher-js');
 //2053,8443 FOR cloudflare proxy
 window.Echo = new Echo({
     broadcaster: 'pusher',
-    key: window.PUSHER_APP_KEY,
-    wsHost: window.PUSHER_APP_HOST,
-    wsPort: window.APP_DEBUG ? 6001 : 6001,
-    wssPort: window.APP_DEBUG ? 6001 : 6001,
-    forceTLS: !window.APP_DEBUG,
+    key: process.env.MIX_PUSHER_APP_KEY,
+    wsHost: process.env.MIX_PUSHER_APP_HOST,
+    wsPort: 6001,
+    forceTLS: false,
     disableStats: true,
-    enabledTransports: ['ws', 'wss'],
 });

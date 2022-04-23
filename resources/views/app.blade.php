@@ -23,11 +23,5 @@
         @env ('local')
             <script src="http://localhost:3000/browser-sync/browser-sync-client.js"></script>
         @endenv
-
-        <script> 
-            window.PUSHER_APP_KEY = '{{ config('broadcasting.connections.pusher.key') }}';
-            window.PUSHER_APP_HOST = '{{ env('PUSHER_APP_HOST') }}';
-            window.APP_DEBUG = {{ env('APP_ENV') == 'local' ? 'true' : 'false' }}; 
-        </script>
     </body>
 </html>
