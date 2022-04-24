@@ -1,83 +1,78 @@
 <template>
-    <div class="col-span-2 bg-white">
-        <div class="w-full">
-            <div class="flex items-center border-b border-gray-300 pl-3 py-3" v-if="contact">
-                <img class="h-10 w-10 rounded-full object-cover"
-                :src="contact.profile_photo_url"
-                :alt="contact.username" />
-                <span class="block ml-2 font-bold text-base text-gray-600">{{ contact.name }}</span>
-                <!-- <span class="connected text-green-500 ml-2" >
+    <div class="flex-1 bg-white flex flex-col">
+        <div class="flex items-center border-b border-gray-300 pl-3 py-3" v-if="contact">
+            <img class="h-10 w-10 rounded-full object-cover" :src="contact.profile_photo_url" :alt="contact.username" />
+            <span class="block ml-2 font-bold text-base text-gray-600">{{ contact.name }}</span>
+            <!-- <span class="connected text-green-500 ml-2" >
                     <svg width="6" height="6">
                         <circle cx="3" cy="3" r="3" fill="currentColor"></circle>
                     </svg>
                 </span> -->
-            </div>
-            <div id="chat" class="w-full" ref="toolbarChat">
-                <div class="overflow-y-auto flex flex-grow py-4 relative" style="height: 27rem;">
-                    <feeds :messages="messages" :contact="contact"></feeds>
-                </div>
-                <composer @send="sendMessage" @fileReady="persist"></composer>
-            </div>
+        </div>
+
+        <div class="flex flex-col flex-1">
+            <Feeds :messages="messages" :contact="contact" animateScroll></Feeds>
+            <Composer @send="sendMessage" :contact="contact" @fileReady="persist"></Composer>
         </div>
     </div>
 </template>
 
 <script>
-    import Feeds from './Feeds';
-    import Composer from './Composer';
-    
-    export default {
-        props: {    
-            contact : {
-               type : Object,
-               default: null
-            },
+import Feeds from './Feeds';
+import Composer from './Composer';
 
-            messages: {
-               type : Array,
-               default: []
-            },
-
+export default {
+    props: {
+        contact: {
+            type: Object,
+            default: null
         },
 
-        emits : ['new'],
+        messages: {
+            type: Array,
+            default: []
+        },
 
-        methods: {
+    },
 
-            sendMessage(text){
+    emits: ['new'],
 
-                if(!this.contact){
-                    return ;
-                }
+    methods: {
 
-                axios.post(`/users/${this.contact.id}/direct/message`,{
-                    contact_id : this.contact.id,
-                    message : text
-                }).then((response) => {
-                    this.$emit('new',response.data.message); 
-                })
-            },
+        sendMessage(text) {
 
-            persist(file){
-                
-                let form = new FormData();
+            if (!this.contact) {
+                return;
+            }
 
-                form.append('message',file);
+            axios.post(`/users/${this.contact.id}/direct/message`, {
+                contact_id: this.contact.id,
+                message: text
+            }).then((response) => {
+                this.$emit('new', response.data.message);
+            })
+        },
 
-                form.append('contact_id',this.contact.id)
+        persist(file) {
 
-                axios.post('/chat/fileupload',form)
+            let form = new FormData();
+
+            form.append('message', file);
+
+            form.append('contact_id', this.contact.id)
+
+            axios.post('/chat/fileupload', form)
                 .then((response) => {
-                    this.$emit('new',response.data); 
+                    this.$emit('new', response.data);
                     // window.location.reload();
                 })
                 .catch(error => {
                     flash('Something went wrong, image size must be max 3mb');
                     // window.location.reload();
                 });
-            },
         },
+    },
 
-        components : { Feeds, Composer }
-    }
+    components: { Feeds, Composer }
+}
 </script>

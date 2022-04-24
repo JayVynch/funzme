@@ -1,11 +1,11 @@
  <template>
  	<app-layout>
-		<div class="w-screen">
-	    	<div class="grid grid-cols-3 min-w-full border rounded" style="min-height: 100%;">		
+		<!-- <div class="w-screen"> -->
+	    	<div class="flex border rounded overflow-hidden" style="height: calc(100vh - 65px)">
 				<ContactList :contacts="contacts"  @selected="startCoversationWith" />
-				<Conversation :contact="selectedContact" :messages="messages"  @new="saveNewMessage" />	
+				<Conversation :contact="selectedContact" :messages="messages"  @new="saveNewMessage" />
 			</div>
-		</div>
+		<!-- </div> -->
 	</app-layout>
 </template>
 
@@ -14,7 +14,7 @@
 	import AppLayout from '@/Layouts/AppLayout'
 	import Conversation from './Conversation';
 	import ContactList from './Contact';
- 
+
 	export default defineComponent({
 
 		data (){
@@ -22,16 +22,16 @@
 				selectedContact: null,
 				messages: [],
 				contacts: []
-			} 
+			}
 		},
 
 		mounted() {
 			this.liveListen();
-					
+
 			axios.get(`/users/${this.$page.props.user.id}/contacts`)
 			.then((response) => {
 				this.contacts = response.data;
-			});	
+			});
 		},
 
 		methods: {
@@ -55,12 +55,12 @@
 			},
 
 			liveListen(){
-				
+
 				Echo.channel("DirectMessaging")
 				.listen('NewChatMessage', (e) => {
 				    this.handleIncoming(e.chat);
 				});
-				
+
 			}
 		},
 
