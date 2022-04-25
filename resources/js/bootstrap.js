@@ -28,8 +28,8 @@ window.Echo = new Echo({
     key: process.env.MIX_PUSHER_APP_KEY,
     wsHost: process.env.MIX_PUSHER_APP_HOST,
     wsPort: 6001 ,
+    wssPort: 6001 ,
     forceTLS: false,
     disableStats: true,
-    encrypted: true,
-    cluster: process.env.MIX_PUSHER_APP_CLUSTER,
+    enabledTransports: ['ws', 'wss'],
 });
