@@ -25,7 +25,7 @@
         @endenv
 
         <script>
-            window.APP_DEBUG = {{ env('APP_ENV') == 'local' ? 'true' : 'false' }};
+            window.APP_DEBUG = {{ config('app.debug') ? 'true' : 'false' }};
         </script>
     </body>
 </html>
