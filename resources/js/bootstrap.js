@@ -26,7 +26,7 @@ console.log(process.env.MIX_PUSHER_APP_HOST);
 window.Echo = new Echo({
     broadcaster: 	   'pusher',
     key: 			   process.env.MIX_PUSHER_APP_KEY,
-    wsHost:            window.location.hostname,
+    wsHost:            process.env.MIX_PUSHER_APP_HOST,
     wsPort:            6001,
     wssPort:           6001,
     forceTLS:          !window.APP_DEBUG,
