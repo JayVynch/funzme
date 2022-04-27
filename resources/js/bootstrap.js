@@ -29,7 +29,7 @@ window.Echo = new Echo({
     wsHost:            process.env.MIX_PUSHER_APP_HOST,
     wsPort:            6001,
     wssPort:           6001,
-    forceTLS:          !window.APP_DEBUG,
+    forceTLS:          true,
     disableStats:      true,
     enabledTransports: ['ws', 'wss'],
 });
