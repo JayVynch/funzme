@@ -25,11 +25,11 @@ console.log(process.env.MIX_PUSHER_APP_HOST);
 //2053,8443 FOR cloudflare proxy
 window.Echo = new Echo({
     broadcaster: 	   'pusher',
-    key: 			   process.env.MIX_PUSHER_APP_KEY,
-    wsHost:            process.env.MIX_PUSHER_APP_HOST,
-    wsPort:            6001,
-    wssPort:           6001,
-    forceTLS:          true,
-    disableStats:      true,
-    enabledTransports: ['ws', 'wss'],
+    key: 			process.env.MIX_PUSHER_APP_KEY,
+   	cluster: 		process.env.MIX_PUSHER_APP_CLUSTER,
+    wsHost: 		process.env.MIX_PUSHER_APP_HOST,
+    wsPort: 		6001,
+    forceTLS: 		false,
+    disableStats: 	true,
+    scheme: 		process.env.MIX_PUSHER_APP_SCHEME,
 });
