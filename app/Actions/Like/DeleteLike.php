@@ -25,19 +25,19 @@ class DeleteLike
             return response()->json(['message' => 'sorry could not find post']);
         }
 
-        $notify = $post->user->notifications()->where(function($query) use ($notification){
-            $query->where(function ($q) use ($notification) {
-                $q->read()->whereId($notification->notification_id);
-            })->orWhere(function ($q) use ($notification) {
-                $q->unread()->whereId($notification->notification_id);
-            });
-        })->first();
+        // $notify = $post->user->notifications()->where(function($query) use ($notification){
+        //     $query->where(function ($q) use ($notification) {
+        //         $q->read()->whereId($notification->notification_id);
+        //     })->orWhere(function ($q) use ($notification) {
+        //         $q->unread()->whereId($notification->notification_id);
+        //     });
+        // })->first();
 
         broadcast( new DeleteNotificationEvent($notification));
         
-        $notify->delete();
+        // $notify?->delete();
 
-        $notification->delete();
+        $notification?->delete();
         
         $post->unLike();
 
@@ -46,7 +46,7 @@ class DeleteLike
 
     public function destroyCommentLike($commentId){
         $comment = Comment::whereId($commentId)->first();
-        // dd($comment);
+        
         if(!$comment){
             return response()->json(['message' => 'sorry could not find comment']);
         }
@@ -56,7 +56,7 @@ class DeleteLike
 
         $comment->unLike();
 
-        $comment->user->notifications()->whereId($notification->notification_id)->delete();
+        // $comment->commenter->notifications()->whereId($notification->notification_id)->delete();
 
         event( new DeleteNotificationEvent($notification));
         // broadcast( new destroyCommentLike ($comment));

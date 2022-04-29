@@ -2,8 +2,10 @@
 
 namespace App\Actions\Like;
 
-use App\Models\User;
 use App\Models\Comment;
+use App\Models\NotifiableActivities;
+use App\Models\User;
+use App\Notifications\LikeNotification;
 
 /**
 * 	create a like from a comment which the user liked
@@ -21,11 +23,11 @@ class LikeAComment
 
         $like = $comment->like();
 
-        if(auth()->id() != $comment->user->id){
+        if(auth()->id() != $comment->commenter->id){
 
-            $comment->user->notify( new LikeNotification($comment));
+            $comment->commenter->notify( new LikeNotification($comment));
 
-            $notisme = $comment->user->unreadNotifications()->get();
+            $notisme = $comment->commenter->unreadNotifications()->get();
 
             $notisme->last( function($value) use ($comment){
             

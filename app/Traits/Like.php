@@ -7,11 +7,9 @@ use Auth;
 trait Like{
 
 	public function like(){
-        $attributes = [
-            'user_id' => Auth::id(),
-        ];
-        if( !$this->likes()->where($attributes)->exists()){
-           return $this->likes()->create($attributes);    
+    
+        if( !$this->likes()->where('user_id',Auth::id())->exists()){
+           return $this->likes()->create([ 'user_id' => Auth::id() ]);    
         }
     }
 

@@ -20,11 +20,10 @@ import Echo from 'laravel-echo';
 
 window.Pusher = require('pusher-js');
 
-console.log(process.env.MIX_PUSHER_APP_HOST);
-
 //2053,8443 FOR cloudflare proxy
 window.Echo = new Echo({
-    broadcaster: 	   'pusher',
+    broadcaster: 	 
+    'pusher',
     key: 			process.env.MIX_PUSHER_APP_KEY,
    	cluster: 		process.env.MIX_PUSHER_APP_CLUSTER,
     wsHost: 		process.env.MIX_PUSHER_APP_HOST,

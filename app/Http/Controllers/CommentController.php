@@ -19,6 +19,7 @@ class CommentController extends Controller
     }
 
     public function index($id){
+
         return Inertia::render('Post/Comment',[
                 'postWithComments' => Posts::with('user')->whereId($id)->first() 
             ]
