@@ -53,10 +53,11 @@ class FollowController extends Controller
             return redirect()->back();
         }
 
-        Auth::user()->befriend($following);
-        // dd("ok");
+        if (!Auth::user()->isFriendWith($following)) {
+            Auth::user()->befriend($following); 
 
-        $following->acceptFollowRequest(Auth::user());
+            $following->acceptFollowRequest(Auth::user());
+        }
 
         $following->notify(new GeneralNotification(auth()->user()));
 
@@ -64,6 +65,7 @@ class FollowController extends Controller
     }
 
     public function unFollow($email){
+
         $user = User::whereEmail($email)->first();
 
         if(!$user){

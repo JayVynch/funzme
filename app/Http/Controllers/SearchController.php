@@ -12,6 +12,7 @@ class SearchController extends Controller
         $query = $request->keyword;
 
         $search = User::where('name','LIKE','%'.$query.'%')
+                    ->where('id','!=',auth()->id())
                     ->get();
 
         if(!$search){

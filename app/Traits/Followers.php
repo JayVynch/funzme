@@ -33,10 +33,10 @@ trait Followers {
      *
      * @return bool
      */
-    public function unfriend(User $recipient)
+    public function unfriend($recipient)
     {
-        $deleted = $this->findFriendship($recipient)->delete();
-        // Event::fire('friendships.cancelled', [$this, $recipient]);
+        $deleted = Follow::whereReceiverId($recipient->id)->whereSenderId($this->id)->whereStatus(FollowStatus::ACCEPTED)->delete();
+        
         return $deleted;
     }
     
@@ -324,7 +324,7 @@ trait Followers {
      */
     private function findFriendship($recipient)
     {
-        return Follow::betweenUser($this, $recipient);
+        return Follow::betweenUser($recipient,$this);
     }
     
     /**
@@ -431,6 +431,9 @@ trait Followers {
         return $this->morphMany(Follow::class, 'sender');
     }
 
+    public function hasRelationship(){
+        return $this->isFriendWith(auth()->user());
+    }
     
     protected function getOrPaginate($builder, $perPage)
     {

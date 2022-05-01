@@ -91,7 +91,7 @@ class User extends Authenticatable
     }
 
     public function getIsFollowerAttribute(){
-        return $this->follower()->exists();  
+        return $this->isFriendWith(auth()->user());
     }
 
     public function getIsFollowingAttribute(){

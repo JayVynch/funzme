@@ -4,7 +4,7 @@
             <div class="w-full max-w-xl border border-gray-300 rounded-2xl py-3 px-5 my-3" v-for="(post,i) in posts" :key="post.id">
                 <div class="flex">
                     <Link :href="route('users.page',post.user.username)" class="mr-2">
-                        <img class="rounded-full w-16 h-16" :src="post.user.profile_photo_url" :alt="post.user.name" />
+                        <img class="rounded-full w-16 h-16 object-cover" :src="post.user.profile_photo_url" :alt="post.user.name" />
                     </Link>
                     <div>
                         <div class="flex space-x-1">

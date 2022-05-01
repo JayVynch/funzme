@@ -10,7 +10,7 @@
                 </svg>
           </button>
         </div>
-        <div v-if="users.length > 0" class="absolute w-full border mt-28 border-gray-300 bg-white py-2 px-4">
+        <div v-if="users.length > 0" class="absolute sm:w-full border mt-36 border-gray-300 bg-white py-2 px-4 z-50">
             <Link :href="route('users.page',user.username)" class="flex px-4 border-t border-gray-300" v-for="(user,i) in users" :key="user.id">
                 <div class="mr-2 flex items-center justify-center">
                     <img class="rounded-full w-8 h-8" :src="user.profile_photo_url" :alt="user.name" />

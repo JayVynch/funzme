@@ -16,7 +16,7 @@ class Posts extends Model
     
     protected $table = 'posts';
 
-    protected $fillable = ['tweets','post_photos'];
+    protected $fillable = ['user_id','tweets','post_photos'];
 
     protected $appends = ['isLiked','postUrl'];
 

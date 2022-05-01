@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+
     public function index(){
 
     	return Inertia::render('Dashboard',[ 
@@ -18,9 +19,9 @@ class HomeController extends Controller
 	    ]);
     }
 
-    public function userPage($user){
+    public function userPage($username){
 
-    	$user = User::whereUsername($user)->first();
+        $user = User::where('username',$username)->first();
 
     	return Inertia::render('Post/Profile',[ 
 

@@ -15,13 +15,13 @@
 							      	<div class="text-white text-sm">@{{ profiler.username }}</div>
 							      	
 							      	<div class="py-2 space-x-2 absolute right-3 bottom-0" :class="classes">
-										<follow :email="profiler.email" :isFollower="profiler.isFollower"></follow>
+										<follow :email="profiler.email" :isFollower="follows" @followAction="actionForFollow"></follow>
 									</div>
 									<div
 										class="py-4 flex justify-center items-center w-full divide-x divide-gray-400 divide-solid">
 										<h4 class="text-sm font-semibold px-2">Joined {{ ago(profiler.created_at) }}</h4>
 										<span class="text-center text-sm px-2">
-											<span class="font-bold text-white">{{ profiler.countFollower }}</span>
+											<span class="font-bold text-white">{{ countFollower }}</span>
 											<span class="text-white"> followers</span>
 										</span>
 										<span class="text-center text-sm px-2">
@@ -110,12 +110,26 @@
 
 		props : ['tweets','profiler'],
 
+		data(){
+			return {
+				follows : this.profiler.isFollower,
+				countFollower : this.profiler.countFollower,
+			}
+		},
+
 		methods : {
 
         	ago(time){
 
                 return moment(time).fromNow();
             },
+
+            actionForFollow(action){
+            	this.follows = action;
+            	if (action == true) { this.countFollower ++ }
+
+     			if (action == false) { this.countFollower -- }       	
+            }
         },
 
         computed : {

@@ -71,7 +71,7 @@ class Follow extends Model
      */
     public function scopeBetweenUsers($query, $sender, $recipient)
     {
-        $query->where(function ($queryIn) use ($sender, $recipient){
+        return $query->where(function ($queryIn) use ($sender, $recipient){
             $queryIn->where(function ($q) use ($sender, $recipient) {
                 $q->whereSenderId($sender->id)->whereReceiverId($recipient->id);
             })->orWhere(function ($q) use ($sender, $recipient) {
@@ -88,7 +88,7 @@ class Follow extends Model
      */
     public function scopeBetweenUser($query, $sender, $recipient)
     {
-        $query->where(function ($queryIn) use ($sender, $recipient){
+        return $query->where(function ($queryIn) use ($sender, $recipient){
             $queryIn->whereSenderId($sender->id)->whereReceiverId($recipient->id);
         });
     }

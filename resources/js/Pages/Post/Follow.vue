@@ -53,7 +53,7 @@
 		methods : {
 
 			getFollow(){
-				if (this.isFollower == true) {
+				if (this.isFollower == true || this.FollowStatus == true) {
 					this.openModal()
 				}else{
 					this.followThem()
@@ -64,7 +64,8 @@
 				axios.post(`/users/${this.email}/follow`,{
 					emial : this.email
 				}).then( ()=>{
-					//
+					this.FollowStatus = true
+					this.$emit('followAction',true);
 				})
 			},
 
@@ -73,6 +74,8 @@
 					emial : this.email
 				}).then( ()=>{
 					this.showable = false
+					this.FollowStatus = false
+					this.$emit('followAction',false);
 				})
 			},
 
