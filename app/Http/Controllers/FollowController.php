@@ -68,6 +68,8 @@ class FollowController extends Controller
 
         $user = User::whereEmail($email)->first();
 
+        dd($user->follower()->first());
+
         if(!$user){
             return redirect()->route('dashboard')->with('error', 'The User could not be found on our Database');
         }

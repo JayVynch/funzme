@@ -88,9 +88,7 @@ class Follow extends Model
      */
     public function scopeBetweenUser($query, $sender, $recipient)
     {
-        return $query->where(function ($queryIn) use ($sender, $recipient){
-            $queryIn->whereSenderId($sender->id)->whereReceiverId($recipient->id);
-        });
+        return $query->whereSenderId($sender->id)->whereReceiverId($recipient->id);
     }
 
 

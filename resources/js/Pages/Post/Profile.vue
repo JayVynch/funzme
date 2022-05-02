@@ -112,7 +112,7 @@
 
 		data(){
 			return {
-				follows : this.profiler.isFollower,
+				follows : this.profiler.isFollowing,
 				countFollower : this.profiler.countFollower,
 			}
 		},

@@ -37,7 +37,7 @@
 				type : String
 			},
 
-			isFollower : {
+			isFollowing : {
 				type : Boolean
 			}
 		},
@@ -46,14 +46,14 @@
 			return {
 				showable : false,
 
-				FollowStatus : this.isFollower
+				FollowStatus : this.isFollowing
 			}
 		},
 
 		methods : {
 
 			getFollow(){
-				if (this.isFollower == true || this.FollowStatus == true) {
+				if (this.isFollowing == true || this.FollowStatus == true) {
 					this.openModal()
 				}else{
 					this.followThem()

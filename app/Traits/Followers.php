@@ -19,6 +19,7 @@ trait Followers {
         if (!$this->canBefriend($recipient)) {
             return false;
         }
+
         $friendship = (new Follow)->fillRecipient($recipient)->fill([
             'status' => FollowStatus::PENDING,
         ]);
@@ -324,7 +325,7 @@ trait Followers {
      */
     private function findFriendship($recipient)
     {
-        return Follow::betweenUser($recipient,$this);
+        return Follow::betweenUser($this,$recipient);
     }
     
     /**
