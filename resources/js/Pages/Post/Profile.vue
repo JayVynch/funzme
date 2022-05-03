@@ -112,8 +112,10 @@
 
 		data(){
 			return {
-				follows : this.profiler.isFollowing,
-				countFollower : this.profiler.countFollower,
+				follows : 			this.profiler.isFollower,
+				following: 			this.profiler.isFollowing,
+				countFollowing : 	this.profiler.countFollowing,
+				countFollower : 	this.profiler.countFollower,
 			}
 		},
 

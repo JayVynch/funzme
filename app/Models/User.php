@@ -83,11 +83,11 @@ class User extends Authenticatable
     }
 
     public function follower(){
-      return $this->hasMany(Follow::class,'sender_id');
+      return $this->hasMany(Follow::class,'receiver_id');
     }
 
     public function following(){
-      return $this->hasMany(Follow::class,'receiver_id');
+      return $this->hasMany(Follow::class,'sender_id');
     }
 
     public function getIsFollowerAttribute(){
