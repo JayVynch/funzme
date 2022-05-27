@@ -25,6 +25,8 @@ class HomeController extends Controller
 
     	return Inertia::render('Post/Profile',[ 
 
+            'followership' => auth()->user()->isFriendWith($user),
+
     		'tweets' => Posts::with('user')->where(function($query) use ($user) {
 				            return $query->where('user_id', $user->id)
 				            ->orWhereIn('user_id', $user->getFriends()->pluck('id'));

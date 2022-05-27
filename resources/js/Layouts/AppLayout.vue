@@ -5,7 +5,7 @@
         <jet-banner />
 
         <div class="min-h-screen bg-pink-50">
-            <nav class="bg-purple-900 border-b border-purple-100 ">
+            <nav class="bg-gradient-to-r from-purple-800 to-pink-800 border-b border-purple-100 ">
                 <!-- Primary Navigation Menu -->
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex justify-between h-16">
@@ -13,14 +13,17 @@
                             <!-- Logo -->
                             <div class="flex-shrink-0 flex items-center">
                                 <Link :href="route('dashboard')">
-                                    <jet-application-mark class="block h-9 w-auto fill-current text-white" />
+                                    <jet-application-mark class="block h-9 w-auto fill-current text-white px-2" />
                                 </Link>
-                                <span class="font-bold text-white px-4">Purr</span>
+                                <span class="hidden sm:flex font-bold text-white px-2">Purr</span>
                             </div>
 
                             
                             <!-- Search Input -->
+                            
                             <user-search></user-search>
+                            <MobileSearch />
+                            
 
                             <Link class="text-white ml-3 flex items-center justify-center" :href="route('users.chat')">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -135,7 +138,7 @@
 
                         <!-- Hamburger -->
                         <div class="-mr-2 flex items-center sm:hidden">
-                            <button @click="showingNavigationDropdown = ! showingNavigationDropdown" class="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
+                            <button @click="showingNavigationDropdown = ! showingNavigationDropdown" class="inline-flex items-center justify-center p-2 rounded-md text-white  focus:outline-none  focus:text-white transition duration-150 ease-in-out">
                                 <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                                     <path :class="{'hidden': showingNavigationDropdown, 'inline-flex': ! showingNavigationDropdown }" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                                     <path :class="{'hidden': ! showingNavigationDropdown, 'inline-flex': showingNavigationDropdown }" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -246,6 +249,7 @@
     import JetNavLink from '@/Jetstream/NavLink'
     import JetResponsiveNavLink from '@/Jetstream/ResponsiveNavLink'
     import UserSearch from '@/Pages/Post/Search'
+    import MobileSearch from '@/Pages/Post/MobileSearch'
     import UserNotifications from '@/Pages/Post/Notifications'
     import { Head, Link } from '@inertiajs/inertia-vue3';
 
@@ -262,6 +266,7 @@
             JetNavLink,
             JetResponsiveNavLink,
             UserSearch,
+            MobileSearch,
             UserNotifications,
             Head, 
             Link

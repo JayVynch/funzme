@@ -1,5 +1,5 @@
 <template>
-    <div class="flex items-center justify-center w-3/4 relative">
+    <div class="hidden sm:flex items-center justify-center w-3/4 relative">
         <!-- component -->
         <div class="relative text-gray-600 w-full">
             <input type="search" v-model="keyword" placeholder="Search" class="bg-white h-10 px-5 pr-10 rounded-lg text-sm focus:outline-none w-full

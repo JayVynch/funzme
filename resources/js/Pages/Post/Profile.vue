@@ -108,12 +108,11 @@
 			Link
 		},
 
-		props : ['tweets','profiler'],
+		props : ['tweets','profiler','followership'],
 
 		data(){
 			return {
-				follows : 			this.profiler.isFollower,
-				following: 			this.profiler.isFollowing,
+				follows : 			this.followership,
 				countFollowing : 	this.profiler.countFollowing,
 				countFollower : 	this.profiler.countFollower,
 			}
