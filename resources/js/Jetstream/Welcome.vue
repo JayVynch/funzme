@@ -5,7 +5,7 @@
             <div class="mt-8 text-2xl flex flex-col w-full items-center">
                 <PostBox />
 
-                <Feeds />
+                <Feeds :auth="auth" />
             </div>
         </div>
 
@@ -29,6 +29,8 @@
             ImagePostButton,
             PostBox
         },
+
+        props : ['auth'],
 
         data() {
             return{

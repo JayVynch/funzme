@@ -8,7 +8,7 @@
                 </svg>
             </button>
         
-            <search-modal :show="search">
+            <search-modal :show="search" @close="closeModal">
                 <template #title>
                     <div class="flex justify-between">
                         <h2>

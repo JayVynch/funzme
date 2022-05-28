@@ -31,7 +31,7 @@
                 </button>
             </div>
         </div>
-        <post-image-modal :show="showable">
+        <post-image-modal :show="showable" @close="closeModal">
             <template #title>
                 upload photos
             </template>

@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Posts;
-use Illuminate\Http\Request;
-use Inertia\Inertia;
-use Illuminate\Http\File;
-use App\Actions\Like\LikeAPost;
+
 use App\Actions\Like\DeleteLike;
-use Illuminate\Support\Facades\Storage;
+use App\Actions\Like\LikeAPost;
+use App\Actions\Post\DeletePost;
 use App\Events\NewPost;
+use App\Models\Posts;
+use Illuminate\Http\File;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Inertia\Inertia;
 
 class PostController extends Controller
 {
@@ -65,6 +67,13 @@ class PostController extends Controller
         broadcast(new NewPost($post));
 
         return redirect()->back();
+    }
+
+    public function delete(Request $request,$id){
+        
+        (new DeletePost)($id);
+
+       return redirect()->back();
     }
 
     public function addLike(Request $request){

@@ -13,16 +13,18 @@
 	            </div>
 	            <Link :href="route('users.page',post.user.username)" class="text-gray-500 text-sm">@{{ post.user.username }}</Link>
 	        </div>
-	        <div class="reletive flex justify-end w-full cursor-pointer" role="button" @click="openOption">
-	            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500 current-fill" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-	                <path stroke-linecap="round" stroke-linejoin="round" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
-	            </svg>
-	            <div v-if="option" 
-	                class="absolute text-xs flex bg-gray-300 mt-6 -mr-8 md:-mr-12  border-gray-300 text-gray-500 border rounded-lg px-2 py-2"
-	                @click="deletePost"
-	            >
-	                delete post
-	            </div>
+	        <div  class="reletive flex justify-end w-full cursor-pointer" role="button"   @click="openOption">
+	        	<div class="absolute" v-show="me == post.user_id">
+	        		<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-pink-800 current-fill" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+		                <path stroke-linecap="round" stroke-linejoin="round" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+		            </svg>
+		            <div v-if="option" role="button"
+		                class="absolute text-xs flex bg-pink-800 -mr-8 md:-mr-12  border-red-300 text-white border rounded-lg px-2 py-2"
+		                @click="deletePost"
+		            >
+		                delete
+		            </div>
+	        	</div>
 	        </div>
 	    </div>
 
@@ -72,8 +74,9 @@
             Head,
             Link,
         },
+        emits : ['delete'],
 
-        props : ['feed'],
+        props : ['feed','me','index'],
 
 		data() {
             return{
@@ -97,6 +100,10 @@
             ago(time){
 
                 return moment(time).fromNow();
+            },
+            deletePost(){
+            	this.$emit('delete',this.index);
+            	this.$inertia.delete('/posts/'+this.post.id+'/delete');
             },
             openOption(){
                 this.option = !this.option

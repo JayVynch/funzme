@@ -2,7 +2,7 @@
 	<section class="py-6 px-4 w-full md:w-2/3">
         <div  class="min-h-screen bg-white py-6 flex flex-col items-center">
             <div class="w-full max-w-xl border border-gray-300 rounded-2xl py-3 px-5 my-3" v-for="(post,i) in posts" :key="post.id">
-                <Feed :feed="post" />
+                <Feed :feed="post" :me="auth" :index="i" @delete="removePost"/>
             </div>
         </div>
     </section>
@@ -19,6 +19,8 @@
         components : {
             Feed
         },
+
+        props : ['auth'],
 
         mounted(){
             axios.get('/posts').
@@ -42,6 +44,9 @@
 
                 return moment(time).fromNow();
             },
+            removePost(post){
+                this.posts.splice(post, 1);
+            }
         }
 	})
 </script>

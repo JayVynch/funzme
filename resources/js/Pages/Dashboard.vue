@@ -9,7 +9,7 @@
         <div class="md:py-12">
             <div class="w-full lg:max-w-7xl mx-auto px:2 md:px-6 lg:px-8 ">
                 <div class="bg-pink-300 overflow-hidden shadow-xl sm:rounded-lg">
-                    <welcome />
+                    <welcome :auth="user.id"  />
                 </div>
             </div>
         </div>
@@ -26,5 +26,6 @@
             AppLayout,
             Welcome,
         },
+        props : ['user']
     })
 </script>

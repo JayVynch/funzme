@@ -37,6 +37,8 @@ Route::middleware('auth:sanctum')->group(function(){
 
 	Route::post('/posts/store', [PostController::class, 'store'])->name('tweet');
 
+	Route::delete('/posts/{id}/delete', [PostController::class, 'delete'])->name('removePost');
+
 	Route::get('/posts' , [PostController::class, 'index'])->name('post.index');
 
 	// like routes for posts and comments
