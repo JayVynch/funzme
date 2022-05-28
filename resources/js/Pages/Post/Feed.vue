@@ -29,13 +29,12 @@
 	    </div>
 
 	    <div class="py-3">
-	        <figure v-if="post.post_photos">
-	            <img class="w-full h-56 object-cover" :src="post.postUrl">
+	        <figure v-if="post.post_photos" @click="biggerPic">
+	            <img class="w-full h-56 object-cover cursor-pointer" :src="post.postUrl" >
 	        </figure>
 	        <div v-if="post.tweets" v-html="post.tweets" class="text-lg"></div>
 	        <div class="flex">
 	            <p class="text-gray-500 pt-1 text-xs">{{ ago(post.created_at) }}</p>
-	            
 	        </div>
 	    </div>
 
@@ -54,6 +53,15 @@
 	            <span class="text-sm">{{ post.comments_count }}</span>
 	        </Link>
 	    </div>
+
+	    <feed-image-modal :show="largeImg" @close="closeModal">
+            
+            <template #content>
+                <div class="my-auto w-full h-full flex justify-center items-center" >
+                    <img class="w-full h-full" :src="post.postUrl" @click="biggerPic">
+                </div>
+            </template>
+        </feed-image-modal>
 	</div>
 	
 </template>
@@ -64,6 +72,7 @@
     import moment from 'moment';
     import Likes from './Like'
     import PostComment from './Comment'
+    import FeedImageModal from './PostImage'
     
 	export default defineComponent({
         name : 'Feed',
@@ -73,6 +82,7 @@
             PostComment,
             Head,
             Link,
+            FeedImageModal,
         },
         emits : ['delete'],
 
@@ -82,6 +92,7 @@
             return{
                 post : this.feed,
                 option : false,
+                largeImg : false,
             }
         },
 
@@ -108,6 +119,14 @@
             openOption(){
                 this.option = !this.option
             },
+
+            biggerPic(){
+            	this.largeImg = true;
+            },
+
+            closeModal(){
+            	this.largeImg = false;
+            }
             
         }
 	})
