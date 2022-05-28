@@ -5,7 +5,7 @@
         <jet-banner />
 
         <div class="min-h-screen bg-pink-50">
-            <nav class="bg-gradient-to-r from-purple-800 to-pink-800 border-b border-purple-100 ">
+            <nav class="bg-purple-900 border-b border-purple-100 ">
                 <!-- Primary Navigation Menu -->
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex justify-between h-16">
