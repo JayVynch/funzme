@@ -1,20 +1,21 @@
 <template>
 	<div @click="noOption">
 		<div class="flex justify-between w-full">
-	        <div class="flex w-1/3">
-	            <Link :href="route('users.page',post.user.username)" class="w-full sm:mr-3">
+	        <div class="flex">
+	            <Link :href="route('users.page',post.user.username)" class="w-full">
 	                <img class="rounded-full w-16 h-16 object-cover" :src="post.user.profile_photo_url" :alt="post.user.name" />
 	            </Link> 
-	            <div class="sm:w-full ml-2">
-		            <div class="flex space-x-1">
+	            <div class="flex ml-2 sm:w-full">
+		            <div class="flex flex-col">
 		                <Link :href="route('users.page',post.user.username)" class="font-bold">{{ post.user.name }}</Link>
+		                <Link :href="route('users.page',post.user.username)" class="text-gray-500 text-sm">@{{ post.user.username }}</Link>
 		            </div>
-		            <Link :href="route('users.page',post.user.username)" class="text-gray-500 text-sm">@{{ post.user.username }}</Link>
+		            
 		        </div>
 	        </div>
 	        
 	        
-	        <div  class="reletive flex justify-end w-1/3 cursor-pointer" role="button"   @click="openOption">
+	        <div  class="reletive flex justify-end  cursor-pointer" role="button"   @click="openOption">
 	        	<div class="sm:absolute" v-show="me == post.user_id">
 	        		<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-pink-800 current-fill" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
 		                <path stroke-linecap="round" stroke-linejoin="round" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
